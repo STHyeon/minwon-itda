@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    // Source files
+    "**/*.js",
+    "**/*.jsx",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.d.ts",
+    "typings/*.d.ts",
+
+    // Config files
+    "next.config.ts",
+    "tsconfig.eslint.json",
+    "postcss.config.mjs"
+  ],
+  "exclude": ["node_modules"]
+}
