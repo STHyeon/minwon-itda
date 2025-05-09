@@ -1,0 +1,41 @@
+{
+  // vscode
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "never",
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.tslint": "never",
+    "source.fixAll.stylelint": "never"
+  },
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+
+  // ESLint
+  // ref: https://github.com/microsoft/vscode-eslint
+  // plugin: https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
+  "eslint.codeActionsOnSave.mode": "problems",
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+
+  // i18n Ally
+  // ref: https://github.com/lokalise/i18n-ally
+  // plugin: https://marketplace.visualstudio.com/items?itemName=Lokalise.i18n-ally
+  "i18n-ally.localesPaths": "src/locales/messages",
+  "i18n-ally.keystyle": "flat",
+
+  // Typescript
+  "typescript.tsdk": "node_modules/typescript/lib",
+
+  // VScode IntelliCode
+  // plugin: https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode
+  "vsintellicode.typescript.completionsEnabled": true,
+
+  // tailwind
+  "tailwindCSS.experimental.classRegex": [
+    ["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  ]
+}
