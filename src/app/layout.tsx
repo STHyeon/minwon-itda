@@ -4,6 +4,9 @@ import type { Metadata } from 'next';
 
 import '@/styles/globals.css';
 
+import { Header } from '@/components/layout';
+import { cn } from '@/lib/utils';
+
 //
 //
 //
@@ -29,7 +32,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="ko">
       <body className="bg-base-100">
-        <AppProvider>{children}</AppProvider>
+        <AppProvider>
+          <Header />
+          <main className={cn('flex flex-1 flex-col')}>{children}</main>
+        </AppProvider>
       </body>
     </html>
   );

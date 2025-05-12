@@ -23,7 +23,9 @@ const Errors = React.forwardRef<HTMLDivElement, ErrorsProps>(
       <div
         {...props}
         ref={ref}
-        className={cn('flex h-dvh flex-col items-center justify-center gap-4')}
+        className={cn(
+          'flex h-dvh flex-col items-center justify-center gap-4 px-4'
+        )}
       >
         <div className={cn('relative aspect-square w-full max-w-96')}>
           <Image src="/images/errors/server-down.svg" alt="error-image" fill />

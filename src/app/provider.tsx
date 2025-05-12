@@ -2,7 +2,7 @@
 
 import { ErrorBoundary } from 'react-error-boundary';
 
-import { Errors } from '@/components';
+import { Errors } from '@/components/errors';
 
 //
 //
