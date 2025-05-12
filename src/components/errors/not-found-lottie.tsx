@@ -1,8 +1,7 @@
 'use client';
 
-import Lottie from 'react-lottie-player';
-
 import lottieNotFound from '@/assets/lotties/not-found.json';
+import { LottiePlayer } from '@/lib/lottie-player';
 import { cn } from '@/lib/utils';
 
 //
@@ -11,7 +10,7 @@ import { cn } from '@/lib/utils';
 
 const NotFoundLottie = () => {
   return (
-    <Lottie
+    <LottiePlayer
       animationData={lottieNotFound}
       speed={0.5}
       play
