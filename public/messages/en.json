@@ -1,0 +1,46 @@
+{
+  "Common": {
+    "error-min-length": "Please enter at least {min} characters",
+    "error-max-length": "Please enter up to {max} characters"
+  },
+
+  "Language":{
+    "ko": "한국어",
+    "en": "English (영어)",
+    "ja": "日本語 (일본어)",
+    "zh": "中文 (중국어)"
+  },
+  
+  "LandingPage": {
+    "title": "Minwon-itda",
+    "description": "Please feel free to tell us anything, we'll help you find the information and solutions you need.",
+    "action-find": "Find a complaint"
+  },
+
+  "ComplaintAskPage": {
+    "title": "Find a complaint",
+    "description": "Please feel free to tell us anything, we'll help you find the information and solutions you need.",
+    "form": {
+      "title-label": "Complaint Title",
+      "title-placeholder": "Reissue of Foreigner Registration Certificate",
+      "description-label": "Complaint Description",
+      "description-placeholder": "How do I get a reissue of a foreigner registration certificate?",
+      "action-search": "Search"
+    }
+  },
+
+  "ComplaintAnswerPage": {
+    "title": "Find a complaint",
+    "action-reset": "Find a complaint again",
+    "type-card": {
+      "title": "Complaint Type"
+    },
+    "question": {
+      "title": "My Question"
+    },
+    "agencies": {
+      "title": "Related Institutions",
+      "description": "We recommend related institutions based on the results of your complaint search."
+    }
+  }
+}

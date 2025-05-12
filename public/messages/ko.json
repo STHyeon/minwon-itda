@@ -1,0 +1,46 @@
+{
+  "Common": {
+    "error-min-length": "최소 {min}자 이상 입력해주세요",
+    "error-max-length": "최대 {max}자 이하로 입력해주세요"
+  },
+
+  "Language":{
+    "ko": "한국어",
+    "en": "English (영어)",
+    "ja": "日本語 (일본어)",
+    "zh": "中文 (중국어)"
+  },
+  
+  "LandingPage": {
+    "title": "민원잇다",
+    "description": "무엇이든 편하게 말씀해 주세요, 필요한 정보와 해결 방법을 찾아드릴게요.",
+    "action-find": "민원 찾기"
+  },
+
+  "ComplaintAskPage": {
+    "title": "민원 찾기",
+    "description": "궁금한 점이나 겪은 불편을 자유롭게 입력해주세요.",
+    "form": {
+      "title-label": "민원 제목",
+      "title-placeholder": "외국인등록증 재발급",
+      "description-label": "민원 내용",
+      "description-placeholder": "외국인등록증 재발급 받으려면 어떻게 해야 하나요?",
+      "action-search": "검색하기"
+    }
+  },
+
+  "ComplaintAnswerPage": {
+    "title": "민원 찾기 결과",
+    "action-reset": "민원 찾기 다시하기",
+    "type-card": {
+      "title": "민원 분류"
+    },
+    "question": {
+      "title": "나의 질문"
+    },
+    "agencies": {
+      "title": "관련 기관",
+      "description": "민원 찾기 결과에 따라 관련 기관을 추천해드립니다."
+    }
+  }
+}

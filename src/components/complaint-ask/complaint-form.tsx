@@ -2,7 +2,7 @@
 
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { z } from 'zod';
 
 import { Button } from '../ui/button';
@@ -17,25 +17,17 @@ import {
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 
+import { useRouter } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
 
 //
 //
 //
 
-const askFormSchema = z.object({
-  title: z.string().min(2, {
-    message: '최소 2글자 이상 입력해주세요.',
-  }),
-  description: z
-    .string()
-    .min(2, {
-      message: '최소 2글자 이상 입력해주세요.',
-    })
-    .max(1000, {
-      message: '최대 1000자까지 입력가능합니다.',
-    }),
-});
+const MIN_TITLE_LENGTH = 2;
+const MAX_TITLE_LENGTH = 100;
+const MIN_DESCRIPTION_LENGTH = 2;
+const MAX_DESCRIPTION_LENGTH = 1000;
 
 //
 //
@@ -43,6 +35,31 @@ const askFormSchema = z.object({
 
 const ComplaintForm = () => {
   const router = useRouter();
+  const intl = useTranslations('ComplaintAskPage');
+  const commonIntl = useTranslations('Common');
+
+  const askFormSchema = z.object({
+    title: z
+      .string()
+      .min(MIN_TITLE_LENGTH, {
+        message: commonIntl('error-min-length', { min: MIN_TITLE_LENGTH }),
+      })
+      .max(MAX_TITLE_LENGTH, {
+        message: commonIntl('error-max-length', { max: MAX_TITLE_LENGTH }),
+      }),
+    description: z
+      .string()
+      .min(MIN_DESCRIPTION_LENGTH, {
+        message: commonIntl('error-min-length', {
+          min: MIN_DESCRIPTION_LENGTH,
+        }),
+      })
+      .max(MAX_DESCRIPTION_LENGTH, {
+        message: commonIntl('error-max-length', {
+          max: MAX_DESCRIPTION_LENGTH,
+        }),
+      }),
+  });
 
   const useFormMethods = useForm<z.infer<typeof askFormSchema>>({
     defaultValues: {
@@ -79,9 +96,12 @@ const ComplaintForm = () => {
           name="title"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>민원 제목</FormLabel>
+              <FormLabel>{intl('form.title-label')}</FormLabel>
               <FormControl>
-                <Input {...field} placeholder="민원 제목을 입력해주세요." />
+                <Input
+                  {...field}
+                  placeholder={intl('form.title-placeholder')}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -93,16 +113,19 @@ const ComplaintForm = () => {
           name="description"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>민원 내용</FormLabel>
+              <FormLabel>{intl('form.description-label')}</FormLabel>
               <FormControl>
-                <Textarea {...field} placeholder="민원 내용을 입력해주세요." />
+                <Textarea
+                  {...field}
+                  placeholder={intl('form.description-placeholder')}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        <Button type="submit">검색하기</Button>
+        <Button type="submit">{intl('form.action-search')}</Button>
       </form>
     </Form>
   );

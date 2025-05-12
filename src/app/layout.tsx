@@ -1,11 +1,6 @@
-import AppProvider from './provider';
-
 import type { Metadata } from 'next';
 
 import '@/styles/globals.css';
-
-import { Header } from '@/components/layout';
-import { cn } from '@/lib/utils';
 
 //
 //
@@ -29,14 +24,5 @@ export const metadata: Metadata = {
 //
 
 export default function RootLayout({ children }: RootLayoutProps) {
-  return (
-    <html lang="ko">
-      <body className="bg-base-100">
-        <AppProvider>
-          <Header />
-          <main className={cn('flex flex-1 flex-col')}>{children}</main>
-        </AppProvider>
-      </body>
-    </html>
-  );
+  return children;
 }

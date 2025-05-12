@@ -1,15 +1,47 @@
+'use client';
+
 import { Globe as IconGlobe } from 'lucide-react';
+import { useLocale, useTranslations } from 'next-intl';
 
 import { Button } from '../ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
 
+import { usePathname, useRouter } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
 
 //
 //
 //
 
+const Language = {
+  KO: 'ko',
+  EN: 'en',
+  JA: 'ja',
+  ZH: 'zh',
+} as const;
+
+//
+//
+//
+
 const LanguageSelector = () => {
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
+  const intl = useTranslations('Language');
+
+  /**
+   *
+   */
+  const handleChangeLanguage = (newLocale: string) => {
+    // Replace the current path with the same path but new locale
+    router.replace(pathname, { locale: newLocale });
+  };
+
+  //
+  //
+  //
+
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -18,18 +50,19 @@ const LanguageSelector = () => {
         </Button>
       </PopoverTrigger>
       <PopoverContent align="end" className={cn('max-w-40 p-2')}>
-        <Button variant="ghost" active className={cn('w-full')}>
-          한국어
-        </Button>
-        <Button variant="ghost" className={cn('w-full')}>
-          English (영어)
-        </Button>
-        <Button variant="ghost" className={cn('w-full')}>
-          日本語 (일본어)
-        </Button>
-        <Button variant="ghost" className={cn('w-full')}>
-          中文 (중국어)
-        </Button>
+        {Object.values(Language).map(language => {
+          return (
+            <Button
+              key={language}
+              variant="ghost"
+              active={locale === language}
+              className={cn('w-full')}
+              onClick={() => handleChangeLanguage(language)}
+            >
+              {intl(language)}
+            </Button>
+          );
+        })}
       </PopoverContent>
     </Popover>
   );

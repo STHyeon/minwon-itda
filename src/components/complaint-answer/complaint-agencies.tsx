@@ -1,3 +1,5 @@
+import { useTranslations } from 'next-intl';
+
 import {
   Card,
   CardContent,
@@ -14,13 +16,17 @@ import { cn } from '@/lib/utils';
 //
 
 const ComplaintAgencies = () => {
+  const intl = useTranslations('ComplaintAnswerPage');
+
+  //
+  //
+  //
+
   return (
     <Card>
       <CardHeader>
-        <CardTitle>관련 기관</CardTitle>
-        <CardDescription>
-          민원 찾기 결과에 따라 관련 기관을 추천해드립니다.
-        </CardDescription>
+        <CardTitle>{intl('agencies.title')}</CardTitle>
+        <CardDescription>{intl('agencies.description')}</CardDescription>
       </CardHeader>
       <CardContent className={cn('flex flex-col gap-2')}>
         <ComplaintAgencyCard />

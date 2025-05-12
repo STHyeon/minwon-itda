@@ -1,0 +1,46 @@
+{
+  "Common": {
+    "error-min-length": "少なくとも{min}文字以上入力してください",
+    "error-max-length": "最大{max}文字まで入力できます"
+  },
+
+  "Language":{
+    "ko": "한국어",
+    "en": "English (영어)",
+    "ja": "日本語 (일본어)",
+    "zh": "中文 (중국어)"
+  },
+  
+  "LandingPage": {
+    "title": "Minwon-itda",
+    "description": "どんなことでも自由にお話しください。必要な情報と解決策をお探しします。",
+    "action-find": "ミンウンを探す"
+  },
+
+  "ComplaintAskPage": {
+    "title": "ミンウンを探す",
+    "description": "ご不明な点やご不便な点を自由にご入力ください。",
+    "form": {
+      "title-label": "ミンウンタイトル",
+      "title-placeholder": "外国人登録証の再発行",
+      "description-label": "ミンウン内容",
+      "description-placeholder": "外国人登録証の再発行を受けるにはどうすればよいですか？",
+      "action-search": "検索"
+    }
+  },
+
+  "ComplaintAnswerPage": {
+    "title": "ミンウンを探す 結果",
+    "action-reset": "ミンウンを探す やり直し",
+    "type-card": {
+      "title": "ミンウンの分類"
+    },
+    "question": {
+      "title": "私の質問"
+    },
+    "agencies": {
+      "title": "関連機関",
+      "description": "ミンウンを探す 結果に基づいて、関連する機関をお勧めします。"
+    }
+  }
+}

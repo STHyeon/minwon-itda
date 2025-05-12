@@ -1,0 +1,46 @@
+{
+  "Common": {
+    "error-min-length": "请输入至少{min}个字符",
+    "error-max-length": "请输入最多{max}个字符"
+  },
+
+  "Language":{
+    "ko": "한국어",
+    "en": "English (영어)",
+    "ja": "日本語 (일본어)",
+    "zh": "中文 (중국어)"
+  },
+  
+  "LandingPage": {
+    "title": "Minwon-itda",
+    "description": "请随时告诉我们任何事情，我们会帮助您找到所需的信息和解决方案。",
+    "action-find": "查找投诉"
+  },
+
+  "ComplaintAskPage": {
+    "title": "查找投诉",
+    "description": "请随意输入您的疑问或遇到的不便。",
+    "form": {
+      "title-label": "投诉标题",
+      "title-placeholder": "外国人登记证重新签发",
+      "description-label": "投诉内容",
+      "description-placeholder": "如何重新申请外国人登记证？",
+      "action-search": "搜索"
+    }
+  },
+
+  "ComplaintAnswerPage": {
+    "title": "投诉查找结果",
+    "action-reset": "查找投诉 重置",
+    "type-card": {
+      "title": "投诉分类"
+    },
+    "question": {
+      "title": "我的问题"
+    },
+    "agencies": {
+      "title": "相关机构",
+      "description": "根据投诉查找结果，我们推荐相关机构。"
+    }
+  }
+}
