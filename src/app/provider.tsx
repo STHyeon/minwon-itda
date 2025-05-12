@@ -2,7 +2,7 @@
 
 import { ErrorBoundary } from 'react-error-boundary';
 
-import { Errors } from '@/components/errors';
+import { ErrorFallback } from '@/components/errors';
 
 //
 //
@@ -17,7 +17,9 @@ interface AppProviderProps {
 //
 
 const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
-  return <ErrorBoundary FallbackComponent={Errors}>{children}</ErrorBoundary>;
+  return (
+    <ErrorBoundary FallbackComponent={ErrorFallback}>{children}</ErrorBoundary>
+  );
 };
 
 export default AppProvider;

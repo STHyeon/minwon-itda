@@ -11,13 +11,13 @@ import { cn } from '@/lib/utils';
 //
 //
 
-type ErrorsProps = FallbackProps & React.ComponentProps<'div'>;
+type ErrorFallbackProps = FallbackProps & React.ComponentProps<'div'>;
 
 //
 //
 //
 
-const Errors = React.forwardRef<HTMLDivElement, ErrorsProps>(
+const ErrorFallback = React.forwardRef<HTMLDivElement, ErrorFallbackProps>(
   ({ resetErrorBoundary, ...props }, ref) => {
     return (
       <div
@@ -33,12 +33,12 @@ const Errors = React.forwardRef<HTMLDivElement, ErrorsProps>(
         <p className={cn('text-center text-2xl font-bold')}>
           죄송합니다. 예기치 못한 오류가 발생했어요. 잠시 후 다시 시도해주세요.
         </p>
-        <Button onClick={resetErrorBoundary}>홈으로 돌아가기</Button>
+        <Button onClick={resetErrorBoundary}>새로고침</Button>
       </div>
     );
   }
 );
 
-Errors.displayName = 'Errors';
+ErrorFallback.displayName = 'ErrorFallback';
 
-export default Errors;
+export default ErrorFallback;
