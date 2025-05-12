@@ -11,11 +11,9 @@ import { cn } from '@/lib/utils';
 //
 //
 
-interface RootLayoutProps {
+interface LocaleLayoutProps {
   children: React.ReactNode;
-  params: {
-    locale: string;
-  };
+  params: Promise<{ locale: string }>;
 }
 
 //
@@ -25,10 +23,10 @@ interface RootLayoutProps {
 export default async function LocaleLayout({
   children,
   params,
-}: RootLayoutProps) {
-  // Promise.resolve를 사용하여 params를 promise로 변환 후 await
-  const resolvedParams = await Promise.resolve(params);
-  const { locale } = resolvedParams;
+}: LocaleLayoutProps) {
+  // ref: https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes#example
+  const resolvedParams = await params;
+  const locale = resolvedParams?.locale;
 
   // Ensure that the incoming `locale` is valid
   if (!hasLocale(routing.locales, locale)) {
