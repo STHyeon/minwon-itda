@@ -25,8 +25,8 @@ const ComplaintAnswer = () => {
     <div className={cn('flex w-full flex-col items-center gap-16')}>
       <h2 className={cn('text-5xl font-bold')}>{intl('title')}</h2>
 
-      <div className={cn('flex w-full gap-8')}>
-        <div className={cn('flex w-full max-w-80 flex-col gap-6')}>
+      <div className={cn('flex w-full flex-col gap-8 md:flex-row')}>
+        <div className={cn('flex w-full flex-col gap-6 md:max-w-80')}>
           <ComplaintQuestion />
           <ComplaintTypeCard />
         </div>
