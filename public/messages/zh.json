@@ -26,6 +26,9 @@
       "description-label": "投诉内容",
       "description-placeholder": "如何重新申请外国人登记证？",
       "action-search": "搜索"
+    },
+    "loading-dialog": {
+      "title": "我们正在寻找可以解决您投诉的机构。"
     }
   },
 

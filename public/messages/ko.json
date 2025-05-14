@@ -26,6 +26,9 @@
       "description-label": "민원 내용",
       "description-placeholder": "외국인등록증 재발급 받으려면 어떻게 해야 하나요?",
       "action-search": "검색하기"
+    },
+    "loading-dialog": {
+      "title": "작성하신 민원을 해결할 수 있는 기관을 찾고 있어요."
     }
   },
 

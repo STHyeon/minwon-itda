@@ -26,6 +26,9 @@
       "description-label": "ミンウン内容",
       "description-placeholder": "外国人登録証の再発行を受けるにはどうすればよいですか？",
       "action-search": "検索"
+    },
+    "loading-dialog": {
+      "title": "あなたのミンウンを解決できる機関を探しています。"
     }
   },
 

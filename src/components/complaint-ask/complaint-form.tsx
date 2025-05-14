@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
@@ -16,8 +17,13 @@ import {
 } from '../ui/form';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
+import ComplaintFormLoadingDialog from './complaint-form-loading-dialog';
 
+import type { ComplaintApiResponse } from '@/typings/complaint-ask';
+
+import { COMPLIANT_ASK_STORAGE_KEY } from '@/constants/complaint-ask';
 import { useRouter } from '@/i18n/navigation';
+import { addItemToLocalStorage } from '@/lib/complaint-saving';
 import { cn } from '@/lib/utils';
 
 //
@@ -37,6 +43,8 @@ const ComplaintForm = () => {
   const router = useRouter();
   const intl = useTranslations('ComplaintAskPage');
   const commonIntl = useTranslations('Common');
+
+  const [isLoadingDialogOpen, setLoadingDialogOpen] = React.useState(false);
 
   const askFormSchema = z.object({
     title: z
@@ -72,10 +80,28 @@ const ComplaintForm = () => {
   /**
    *
    */
-  const handleFormSubmit = useFormMethods.handleSubmit(async () => {
+  const handleFormSubmit = useFormMethods.handleSubmit(async data => {
+    setLoadingDialogOpen(true);
+
     try {
-      router.replace('/complaint-answer');
-    } catch {}
+      const url = new URL('/api/complaint-ask', window.location.origin);
+      url.searchParams.append('keyword', data.description);
+
+      const request = await fetch(url);
+      const response = (await request.json()) as ComplaintApiResponse;
+
+      addItemToLocalStorage(
+        COMPLIANT_ASK_STORAGE_KEY,
+        data.title,
+        data.description,
+        response.data
+      );
+
+      router.push('/complaint-answer');
+    } catch {
+    } finally {
+      setLoadingDialogOpen(false);
+    }
   });
 
   //
@@ -83,51 +109,55 @@ const ComplaintForm = () => {
   //
 
   return (
-    <Form {...useFormMethods}>
-      <form
-        className={cn('flex w-full flex-col gap-6')}
-        onSubmit={e => {
-          e.preventDefault();
-          void handleFormSubmit();
-        }}
-      >
-        <FormField
-          control={useFormMethods.control}
-          name="title"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>{intl('form.title-label')}</FormLabel>
-              <FormControl>
-                <Input
-                  {...field}
-                  placeholder={intl('form.title-placeholder')}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+    <>
+      <Form {...useFormMethods}>
+        <form
+          className={cn('flex w-full flex-col gap-6')}
+          onSubmit={e => {
+            e.preventDefault();
+            void handleFormSubmit();
+          }}
+        >
+          <FormField
+            control={useFormMethods.control}
+            name="title"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{intl('form.title-label')}</FormLabel>
+                <FormControl>
+                  <Input
+                    {...field}
+                    placeholder={intl('form.title-placeholder')}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={useFormMethods.control}
-          name="description"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>{intl('form.description-label')}</FormLabel>
-              <FormControl>
-                <Textarea
-                  {...field}
-                  placeholder={intl('form.description-placeholder')}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          <FormField
+            control={useFormMethods.control}
+            name="description"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{intl('form.description-label')}</FormLabel>
+                <FormControl>
+                  <Textarea
+                    {...field}
+                    placeholder={intl('form.description-placeholder')}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <Button type="submit">{intl('form.action-search')}</Button>
-      </form>
-    </Form>
+          <Button type="submit">{intl('form.action-search')}</Button>
+        </form>
+      </Form>
+
+      <ComplaintFormLoadingDialog open={isLoadingDialogOpen} />
+    </>
   );
 };
 
