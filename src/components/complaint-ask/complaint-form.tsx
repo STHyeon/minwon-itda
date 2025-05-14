@@ -19,9 +19,10 @@ import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import ComplaintFormLoadingDialog from './complaint-form-loading-dialog';
 
-import type { ComplaintApiResponse } from '@/typings/complaint-ask';
+import type { ComplaintApiResponse } from '@/typings/complaint';
 
-import { COMPLIANT_ASK_STORAGE_KEY } from '@/constants/complaint-ask';
+import { COMPLIANT_STORAGE_KEY } from '@/constants/complaint';
+import { ROUTES } from '@/constants/routes';
 import { useRouter } from '@/i18n/navigation';
 import { addItemToLocalStorage } from '@/lib/complaint-saving';
 import { cn } from '@/lib/utils';
@@ -84,20 +85,20 @@ const ComplaintForm = () => {
     setLoadingDialogOpen(true);
 
     try {
-      const url = new URL('/api/complaint-ask', window.location.origin);
+      const url = new URL('/api/complaint/ask', window.location.origin);
       url.searchParams.append('keyword', data.description);
 
       const request = await fetch(url);
       const response = (await request.json()) as ComplaintApiResponse;
 
-      addItemToLocalStorage(
-        COMPLIANT_ASK_STORAGE_KEY,
+      const updatedItems = addItemToLocalStorage(
+        COMPLIANT_STORAGE_KEY,
         data.title,
         data.description,
         response.data
       );
 
-      router.push('/complaint-answer');
+      router.push(`${ROUTES.complaintAskDetail(updatedItems[0].id)}`);
     } catch {
     } finally {
       setLoadingDialogOpen(false);

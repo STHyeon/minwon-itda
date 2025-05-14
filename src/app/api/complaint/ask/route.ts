@@ -2,7 +2,7 @@ import type { NextRequest } from 'next/server';
 import type {
   ComplaintApiResponse,
   SimilarInfoResponse,
-} from '@/typings/complaint-ask';
+} from '@/typings/complaint';
 
 import { camelizeKeys } from '@/lib/camelizeKeys';
 
@@ -13,7 +13,9 @@ import { camelizeKeys } from '@/lib/camelizeKeys';
 const SERVER_URL = process.env.PUBLIC_DATA_SERVER_URL || '';
 const API_KEY = process.env.PUBLIC_DATA_API_KEY || '';
 
-const PAGE_COUNT = '20';
+const RET_COUNT = '20';
+const RET_TARGET = 'qna,qna_origin';
+const RET_DATA_TYPE = 'json';
 const MIN_RESPONSE_TIME_MS = 5000; // 최소 5초 응답 시간
 
 /**
@@ -32,12 +34,16 @@ export async function GET(request: NextRequest) {
   const reqKeyword = searchParams.get('keyword') || '';
   const reqPage = searchParams.get('page') || '1';
 
-  const requestURL = new URL(SERVER_URL);
+  const requestURL = new URL(
+    '/1140100/minAnalsInfoView5/minSimilarInfo5',
+    SERVER_URL
+  );
   requestURL.searchParams.append('serviceKey', API_KEY);
   requestURL.searchParams.append('startPos', reqPage);
-  requestURL.searchParams.append('retCount', PAGE_COUNT);
+  requestURL.searchParams.append('retCount', RET_COUNT);
   requestURL.searchParams.append('searchword', reqKeyword);
-  requestURL.searchParams.append('target', 'qna,qna_origin');
+  requestURL.searchParams.append('target', RET_TARGET);
+  requestURL.searchParams.append('dataType', RET_DATA_TYPE);
 
   try {
     // const response = await fetch(requestURL.toString());
@@ -50,14 +56,14 @@ export async function GET(request: NextRequest) {
         content: '우대용교통카드는 어떻게 발급받을 수 있을까요?',
         create_date: '20240719205119',
         main_sub_name: '서울특별시 강동구',
-        dep_name: '암사1동',
+        dep_name: '어르신복지과',
       },
       {
         title: '민원처리 현황 확인',
         content: '제가 신청한 민원은 언제 처리되나요?',
         create_date: '20240719204532',
         main_sub_name: '서울특별시 강남구',
-        dep_name: '역삼2동',
+        dep_name: '관리과',
       },
     ];
 
@@ -65,7 +71,7 @@ export async function GET(request: NextRequest) {
     const convertedData = camelizeKeys<SimilarInfoResponse[]>(data);
 
     // 페이지 크기보다 데이터가 적으면 hasMore = false
-    const hasMore = convertedData.length >= parseInt(PAGE_COUNT);
+    const hasMore = convertedData.length >= parseInt(RET_COUNT);
 
     // 응답 객체 생성
     const responseData: ComplaintApiResponse = {

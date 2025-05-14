@@ -5,13 +5,13 @@ import { useTranslations } from 'next-intl';
 import {
   AlertDialog,
   AlertDialogContent,
-  AlertDialogDescription,
   AlertDialogHeader,
   AlertDialogTitle,
 } from '../ui/alert-dialog';
 
 import lottieLoading from '@/assets/lotties/loading.json';
 import { LottiePlayer } from '@/lib/lottie-player';
+import { cn } from '@/lib/utils';
 
 //
 //
@@ -40,9 +40,9 @@ const ComplaintFormLoadingDialog = ({
         <AlertDialogHeader>
           <AlertDialogTitle>{intl('loading-dialog.title')}</AlertDialogTitle>
         </AlertDialogHeader>
-        <AlertDialogDescription>
+        <div className={cn('flex min-h-64 w-full items-center justify-center')}>
           <LottiePlayer animationData={lottieLoading} play />
-        </AlertDialogDescription>
+        </div>
       </AlertDialogContent>
     </AlertDialog>
   );

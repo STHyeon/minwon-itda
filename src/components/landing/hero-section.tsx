@@ -5,6 +5,7 @@ import { useLocale } from 'next-intl';
 import { Button } from '../ui/button';
 import HeroSectionLottie from './hero-section-lottie';
 
+import { ROUTES } from '@/constants/routes';
 import { cn } from '@/lib/utils';
 
 //
@@ -37,7 +38,9 @@ const HeroSection = () => {
             - problem: createNavigation 사용시, asChild가 정상적으로 작동하지 않음
             - ref: https://github.com/radix-ui/primitives/issues/3165
             */}
-            <Link href={`/${locale}/complaint-ask`}>{intl('action-find')}</Link>
+            <Link href={`/${locale}/${ROUTES.complaintAsk}`}>
+              {intl('action-find')}
+            </Link>
           </Button>
         </div>
       </div>

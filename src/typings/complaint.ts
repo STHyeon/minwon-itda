@@ -2,8 +2,8 @@ export interface SimilarInfoResponse {
   title: string;
   content: string;
   createDate: string;
-  mainSubName: string;
-  depName: string;
+  mainSubName?: string;
+  depName?: string;
 }
 
 export interface ComplaintApiResponse {

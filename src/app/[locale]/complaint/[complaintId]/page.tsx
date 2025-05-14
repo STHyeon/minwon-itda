@@ -1,0 +1,137 @@
+'use client';
+
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
+import { useLocale, useTranslations } from 'next-intl';
+
+import type { StorageItem } from '@/typings/complaint';
+
+import {
+  ComplaintAgencies,
+  ComplaintQuestion,
+} from '@/components/complaint-detail';
+import { Button } from '@/components/ui/button';
+import { COMPLIANT_STORAGE_KEY } from '@/constants/complaint';
+import { ROUTES } from '@/constants/routes';
+import { getFromLocalStorage } from '@/lib/complaint-saving';
+import { cn } from '@/lib/utils';
+
+//
+//
+//
+
+const MIN_LOADING_TIME = 1000; // 최소 1초
+
+//
+//
+//
+
+const ComplaintAnswer = () => {
+  const intl = useTranslations('ComplaintDetailPage');
+  const locale = useLocale();
+  const params = useParams();
+
+  const complaintId = params.complaintId as string;
+
+  const [complaintData, setComplaintData] = React.useState<null | StorageItem>(
+    null
+  );
+
+  const [isLoading, setLoading] = React.useState(true);
+
+  /**
+   *
+   */
+  const renderComplaintData = () => {
+    const isDataLoading = isLoading || !complaintData;
+    const isDataNotFound = !complaintData && !isLoading;
+
+    if (isDataNotFound) {
+      return (
+        <div className={cn('flex w-full flex-col items-center gap-4')}>
+          <p className={cn('text-2xl font-bold')}>
+            검색 결과가 없거나 데이터를 불러올 수 없어요.
+          </p>
+          <Image
+            src="/images/errors/not-found.jpg"
+            alt="not found"
+            width={400}
+            height={400}
+            quality={100}
+            priority
+          />
+        </div>
+      );
+    }
+
+    return (
+      <div className={cn('flex w-full flex-col gap-8 md:flex-row')}>
+        <div className={cn('flex w-full flex-col gap-6 md:max-w-80')}>
+          <ComplaintQuestion
+            data={isDataLoading ? 'skeleton' : complaintData}
+          />
+          {/* <ComplaintTypeCard mainSubName={''} depName={''} /> */}
+        </div>
+
+        <div className={cn('flex-1')}>
+          <ComplaintAgencies
+            data={isDataLoading ? 'skeleton' : complaintData.data}
+          />
+        </div>
+      </div>
+    );
+  };
+
+  //
+  // Get complaint data from localStorage
+  //
+  React.useEffect(() => {
+    setLoading(true);
+
+    try {
+      const storedComplaints = getFromLocalStorage(COMPLIANT_STORAGE_KEY);
+      const complaint = storedComplaints.find(item => item.id === complaintId);
+
+      if (complaint) {
+        setComplaintData(complaint);
+      }
+    } catch {
+      setComplaintData(null);
+    } finally {
+      const start = Date.now();
+
+      const elapsed = Date.now() - start;
+      const remaining = MIN_LOADING_TIME - elapsed;
+
+      if (remaining > 0) {
+        setTimeout(() => setLoading(false), remaining);
+      } else {
+        setLoading(false);
+      }
+    }
+  }, [complaintId]);
+
+  //
+  //
+  //
+
+  return (
+    <div className={cn('flex w-full flex-col items-center gap-16')}>
+      <h2 className={cn('text-5xl font-bold')}>{intl('title')}</h2>
+
+      {renderComplaintData()}
+
+      <Button asChild>
+        {/* 
+          - problem: createNavigation 사용시, asChild가 정상적으로 작동하지 않음
+          - ref: https://github.com/radix-ui/primitives/issues/3165
+          */}
+        <Link href={`/${locale}/${ROUTES.home}`}>{intl('action-reset')}</Link>
+      </Button>
+    </div>
+  );
+};
+
+export default ComplaintAnswer;

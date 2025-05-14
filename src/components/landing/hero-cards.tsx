@@ -1,6 +1,8 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
+import { useLocale, useTranslations } from 'next-intl';
 
 import { Button } from '../ui/button';
 import {
@@ -12,9 +14,10 @@ import {
   CardTitle,
 } from '../ui/card';
 
-import type { StorageItem } from '@/typings/complaint-ask';
+import type { StorageItem } from '@/typings/complaint';
 
-import { COMPLIANT_ASK_STORAGE_KEY } from '@/constants/complaint-ask';
+import { COMPLIANT_STORAGE_KEY } from '@/constants/complaint';
+import { ROUTES } from '@/constants/routes';
 import { getFromLocalStorage } from '@/lib/complaint-saving';
 import { cn } from '@/lib/utils';
 
@@ -23,6 +26,9 @@ import { cn } from '@/lib/utils';
 //
 
 const HeroCards = () => {
+  const locale = useLocale();
+  const intl = useTranslations('LandingPage');
+
   const [heroCardsContent, setHeroCardsContent] = React.useState<StorageItem[]>(
     []
   );
@@ -31,7 +37,7 @@ const HeroCards = () => {
   // 최근 검색한 민원 데이터 가져오기
   //
   React.useEffect(() => {
-    const storedContent = getFromLocalStorage(COMPLIANT_ASK_STORAGE_KEY);
+    const storedContent = getFromLocalStorage(COMPLIANT_STORAGE_KEY);
 
     setHeroCardsContent(storedContent);
   }, []);
@@ -46,7 +52,7 @@ const HeroCards = () => {
 
   return (
     <div className={cn('flex flex-col gap-4')}>
-      <p className={cn('text-2xl font-bold')}>최근에 검색한 민원</p>
+      <p className={cn('text-2xl font-bold')}>{intl('recent-complaint')}</p>
 
       <div
         className={cn(
@@ -57,8 +63,12 @@ const HeroCards = () => {
           <Card key={index} className={cn('justify-between')}>
             <div className={cn('flex flex-col gap-4')}>
               <CardHeader>
-                <CardTitle>{content.title}</CardTitle>
-                <CardDescription>{content.description}</CardDescription>
+                <CardTitle className={cn('line-clamp-1')}>
+                  {content.title}
+                </CardTitle>
+                <CardDescription className={cn('line-clamp-2')}>
+                  {content.description}
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <ul className={cn('flex flex-col gap-2')}>
@@ -74,7 +84,17 @@ const HeroCards = () => {
               </CardContent>
             </div>
             <CardFooter>
-              <Button>민원 보기</Button>
+              <Button asChild>
+                {/* 
+                - problem: createNavigation 사용시, asChild가 정상적으로 작동하지 않음
+                - ref: https://github.com/radix-ui/primitives/issues/3165
+                */}
+                <Link
+                  href={`/${locale}/${ROUTES.complaintAskDetail(content.id)}`}
+                >
+                  {intl('action-recent-complaint')}
+                </Link>
+              </Button>
             </CardFooter>
           </Card>
         ))}
