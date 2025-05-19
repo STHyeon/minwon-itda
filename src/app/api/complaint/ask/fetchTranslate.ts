@@ -21,6 +21,6 @@ ${keyword}`,
   } catch (error) {
     console.error('번역 API 요청 오류:', error);
 
-    return '';
+    throw error;
   }
 }

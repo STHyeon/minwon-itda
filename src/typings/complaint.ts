@@ -7,7 +7,7 @@ export interface SimilarInfoResponse {
 }
 
 export interface ComplaintApiResponse {
-  data: SimilarInfoResponse[];
+  similarItems: SimilarInfoResponse[];
   hasMore: boolean;
 }
 

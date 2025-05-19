@@ -4,6 +4,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
+import { toast } from 'sonner';
 import { z } from 'zod';
 
 import { Button } from '../ui/button';
@@ -19,6 +20,7 @@ import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import ComplaintFormLoadingDialog from './complaint-form-loading-dialog';
 
+import type { ApiResponse } from '@/typings/api';
 import type { ComplaintApiResponse } from '@/typings/complaint';
 
 import { COMPLIANT_STORAGE_KEY } from '@/constants/complaint';
@@ -45,7 +47,7 @@ const ComplaintForm = () => {
   const intl = useTranslations('ComplaintAskPage');
   const commonIntl = useTranslations('Common');
 
-  const [isLoadingDialogOpen, setLoadingDialogOpen] = React.useState(false);
+  const [isPending, startTransition] = React.useTransition();
 
   const askFormSchema = z.object({
     title: z
@@ -82,27 +84,38 @@ const ComplaintForm = () => {
    *
    */
   const handleFormSubmit = useFormMethods.handleSubmit(async data => {
-    setLoadingDialogOpen(true);
+    startTransition(async () => {
+      try {
+        const url = new URL('/api/complaint/ask', window.location.origin);
+        url.searchParams.append('keyword', data.description);
 
-    try {
-      const url = new URL('/api/complaint/ask', window.location.origin);
-      url.searchParams.append('keyword', data.description);
+        const request = await fetch(url);
+        const response =
+          (await request.json()) as ApiResponse<ComplaintApiResponse>;
 
-      const request = await fetch(url);
-      const response = (await request.json()) as ComplaintApiResponse;
+        if (!request.ok) {
+          const errorMessage =
+            typeof response.error === 'string'
+              ? response.error
+              : '요청 처리 중 오류가 발생했습니다';
 
-      const updatedItems = addItemToLocalStorage(
-        COMPLIANT_STORAGE_KEY,
-        data.title,
-        data.description,
-        response.data
-      );
+          toast.error(errorMessage);
 
-      router.push(`${ROUTES.complaintAskDetail(updatedItems[0].id)}`);
-    } catch {
-    } finally {
-      setLoadingDialogOpen(false);
-    }
+          return;
+        }
+
+        startTransition(() => {
+          const updatedItems = addItemToLocalStorage(
+            COMPLIANT_STORAGE_KEY,
+            data.title,
+            data.description,
+            response.data?.similarItems
+          );
+
+          router.push(`${ROUTES.complaintAskDetail(updatedItems[0].id)}`);
+        });
+      } catch {}
+    });
   });
 
   //
@@ -157,7 +170,7 @@ const ComplaintForm = () => {
         </form>
       </Form>
 
-      <ComplaintFormLoadingDialog open={isLoadingDialogOpen} />
+      <ComplaintFormLoadingDialog open={isPending} />
     </>
   );
 };

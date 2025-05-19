@@ -1,15 +1,17 @@
-import type { SimilarInfoResponse } from '@/typings/complaint';
+import type {
+  ComplaintApiResponse,
+  SimilarInfoResponse,
+} from '@/typings/complaint';
 
 import { camelizeKeys } from '@/lib/camelize-keys';
+
+//
+//
+//
 
 interface FetchSimilarInfoParams {
   keyword: string;
   page: string;
-}
-
-interface ApiResponse<T> {
-  data: T;
-  hasMore: boolean;
 }
 
 //
@@ -52,7 +54,7 @@ const data = [
 export async function fetchSimilarInfo({
   keyword,
   page,
-}: FetchSimilarInfoParams): Promise<ApiResponse<SimilarInfoResponse[]>> {
+}: FetchSimilarInfoParams): Promise<ComplaintApiResponse> {
   const requestURL = new URL(SERVER_REQUEST_URL, SERVER_BASE_URL);
 
   requestURL.searchParams.append('serviceKey', API_KEY);
@@ -71,7 +73,7 @@ export async function fetchSimilarInfo({
     const hasMore = convertedData.length >= parseInt(RET_COUNT);
 
     return {
-      data: convertedData,
+      similarItems: convertedData,
       hasMore,
     };
   } catch (error) {
