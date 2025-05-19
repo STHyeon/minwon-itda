@@ -1,4 +1,5 @@
 import { fetchSimilarInfo } from './fetchSimilarInfo';
+import { fetchTranslate } from './fetchTranslate';
 
 import type { NextRequest } from 'next/server';
 
@@ -16,8 +17,9 @@ export async function GET(request: NextRequest) {
   const reqPage = searchParams.get('page') || '1';
 
   try {
+    const translate = await fetchTranslate(reqKeyword);
     const similarInfoResponse = await fetchSimilarInfo({
-      keyword: reqKeyword,
+      keyword: translate,
       page: reqPage,
     });
 

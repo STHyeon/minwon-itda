@@ -34,7 +34,7 @@ import { cn } from '@/lib/utils';
 const MIN_TITLE_LENGTH = 2;
 const MAX_TITLE_LENGTH = 100;
 const MIN_DESCRIPTION_LENGTH = 2;
-const MAX_DESCRIPTION_LENGTH = 1000;
+const MAX_DESCRIPTION_LENGTH = 500;
 
 //
 //
