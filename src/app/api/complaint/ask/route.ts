@@ -25,18 +25,9 @@ export async function GET(request: NextRequest) {
 
     await ensureMinimumResponseTime(startTime);
 
-    return Response.json(
-      {
-        result: similarInfoResponse,
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          'Cache-Control':
-            'max-age=86400, s-maxage=86400, stale-while-revalidate=86400',
-        },
-      }
-    );
+    return Response.json({
+      result: similarInfoResponse,
+    });
   } catch (error) {
     console.error('API 요청 오류:', error);
     await ensureMinimumResponseTime(startTime);
