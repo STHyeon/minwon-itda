@@ -16,6 +16,7 @@ import { Button } from '@/components/ui/button';
 import { COMPLIANT_STORAGE_KEY } from '@/constants/complaint';
 import { ROUTES } from '@/constants/routes';
 import { getFromLocalStorage } from '@/lib/complaint-saving';
+import { ensureMinimumResponseTime } from '@/lib/time-utils';
 import { cn } from '@/lib/utils';
 
 //
@@ -89,28 +90,27 @@ const ComplaintAnswer = () => {
   //
   React.useEffect(() => {
     setLoading(true);
+    const startTime = Date.now();
 
-    try {
-      const storedComplaints = getFromLocalStorage(COMPLIANT_STORAGE_KEY);
-      const complaint = storedComplaints.find(item => item.id === complaintId);
+    const loadData = async () => {
+      try {
+        const storedComplaints = getFromLocalStorage(COMPLIANT_STORAGE_KEY);
+        const complaint = storedComplaints.find(
+          item => item.id === complaintId
+        );
 
-      if (complaint) {
-        setComplaintData(complaint);
-      }
-    } catch {
-      setComplaintData(null);
-    } finally {
-      const start = Date.now();
-
-      const elapsed = Date.now() - start;
-      const remaining = MIN_LOADING_TIME - elapsed;
-
-      if (remaining > 0) {
-        setTimeout(() => setLoading(false), remaining);
-      } else {
+        if (complaint) {
+          setComplaintData(complaint);
+        }
+      } catch {
+        setComplaintData(null);
+      } finally {
+        await ensureMinimumResponseTime(startTime, MIN_LOADING_TIME);
         setLoading(false);
       }
-    }
+    };
+
+    void loadData();
   }, [complaintId]);
 
   //
@@ -118,18 +118,20 @@ const ComplaintAnswer = () => {
   //
 
   return (
-    <div className={cn('flex w-full flex-col items-center gap-16')}>
+    <div className={cn('relative flex w-full flex-col items-center gap-16')}>
       <h2 className={cn('text-5xl font-bold')}>{intl('title')}</h2>
 
       {renderComplaintData()}
 
-      <Button asChild>
-        {/* 
+      <div className={cn('sticky bottom-10 w-full max-w-lg shadow-xl/30')}>
+        <Button className={cn('w-full')} disabled={isLoading} asChild>
+          {/* 
           - problem: createNavigation 사용시, asChild가 정상적으로 작동하지 않음
           - ref: https://github.com/radix-ui/primitives/issues/3165
           */}
-        <Link href={`/${locale}/${ROUTES.home}`}>{intl('action-reset')}</Link>
-      </Button>
+          <Link href={`/${locale}/${ROUTES.home}`}>{intl('action-reset')}</Link>
+        </Button>
+      </div>
     </div>
   );
 };
