@@ -25,9 +25,7 @@ export async function GET(request: NextRequest) {
 
     await ensureMinimumResponseTime(startTime);
 
-    return Response.json({
-      result: similarInfoResponse,
-    });
+    return Response.json({ data: similarInfoResponse });
   } catch (error) {
     console.error('API 요청 오류:', error);
     await ensureMinimumResponseTime(startTime);
