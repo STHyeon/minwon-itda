@@ -31,6 +31,7 @@ const MIN_LOADING_TIME = 1000; // 최소 1초
 
 const ComplaintAnswer = () => {
   const intl = useTranslations('ComplaintDetailPage');
+  const commonIntl = useTranslations('Common');
   const locale = useLocale();
   const params = useParams();
 
@@ -52,9 +53,7 @@ const ComplaintAnswer = () => {
     if (isDataNotFound) {
       return (
         <div className={cn('flex w-full flex-col items-center gap-4')}>
-          <p className={cn('text-2xl font-bold')}>
-            검색 결과가 없거나 데이터를 불러올 수 없어요.
-          </p>
+          <p className={cn('text-2xl font-bold')}>{commonIntl('empty-data')}</p>
           <Image
             src="/images/errors/not-found.jpg"
             alt="not found"
@@ -73,7 +72,6 @@ const ComplaintAnswer = () => {
           <ComplaintQuestion
             data={isDataLoading ? 'skeleton' : complaintData}
           />
-          {/* <ComplaintTypeCard mainSubName={''} depName={''} /> */}
         </div>
 
         <div className={cn('flex-1')}>

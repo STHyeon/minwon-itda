@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
-import type { SimilarInfoResponse, StorageItem } from '@/typings/complaint';
+import type { ComplaintApiResponse, StorageItem } from '@/typings/complaint';
 
 //
 //
@@ -26,14 +26,12 @@ function saveToLocalStorage(key: string, items: StorageItem[]): void {
  * Creates a new storage item with generated UUID
  */
 function createStorageItem(
-  title: string,
-  description: string,
-  data: SimilarInfoResponse[] = []
+  question: string,
+  data: ComplaintApiResponse[] = []
 ): StorageItem {
   return {
     id: uuidv4(),
-    title,
-    description,
+    question,
     data,
   };
 }
@@ -63,12 +61,11 @@ export function getFromLocalStorage(key: string): StorageItem[] {
  */
 export function addItemToLocalStorage(
   key: string,
-  title: string,
-  description: string,
-  data: SimilarInfoResponse[] = []
+  question: string,
+  data: ComplaintApiResponse[] = []
 ): StorageItem[] {
   const items = getFromLocalStorage(key);
-  const newItem = createStorageItem(title, description, data);
+  const newItem = createStorageItem(question, data);
   const updatedItems = [newItem, ...items].slice(0, 3);
 
   saveToLocalStorage(key, updatedItems);

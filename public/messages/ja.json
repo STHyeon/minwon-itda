@@ -1,47 +1,50 @@
 {
   "Common": {
-    "error-max-length": "最大{max}文字まで入力できます",
-    "error-min-length": "少なくとも{min}文字以上入力してください"
+    "empty-data": "検索結果が見つからないか、データを読み込めませんでした。",
+    "error-max-length": "最大{max}文字まで入力可能です",
+    "error-min-length": "より具体的な内容を入力してください（最小{min}文字）",
+    "error-occurred": "リクエストの処理中にエラーが発生しました"
   },
   "ComplaintAskPage": {
-    "description": "ご不明な点やご不便な点を自由にご入力ください。",
+    "description": "ご質問やお困りの点を自由に入力してください。\n（例：「外国人登録証の再発行手続きについて知りたいです」）",
     "form": {
       "action-search": "検索",
-      "description-label": "ミンウン内容",
-      "description-placeholder": "外国人登録証の再発行を受けるにはどうすればよいですか？",
-      "title-label": "ミンウンタイトル",
-      "title-placeholder": "外国人登録証の再発行"
+      "question-label": "相談内容",
+      "question-placeholder": "外国人登録証の再発行手続きについて知りたいです"
     },
     "loading-dialog": {
-      "title": "あなたのミンウンを解決できる機関を探しています。"
+      "title": "お待ちください。相談内容に応じた機関を検索しています"
     },
-    "title": "ミンウンを探す"
+    "title": "関連機関を探す"
   },
   "ComplaintDetailPage": {
-    "action-reset": "ミンウンを探す やり直し",
+    "action-reset": "別の相談を検索",
     "agencies": {
-      "description": "ミンウンを探す 結果に基づいて、関連する機関をお勧めします。",
+      "description": "ご相談内容に関連する機関をご案内いたします",
       "title": "関連機関"
     },
-    "question": {
-      "title": "私の質問"
+    "agency-card": {
+      "address": "住所",
+      "tel": "電話番号"
     },
-    "title": "ミンウンを探す 結果",
-    "type-card": {
-      "title": "ミンウンの分類"
-    }
+    "question": {
+      "title": "ご相談内容"
+    },
+    "title": "検索結果"
   },
   "LandingPage": {
-    "action-find": "ミンウンを探す",
-    "action-recent-complaint": "最近のミンウンを見る",
-    "description": "どんなことでも自由にお話しください。必要な情報と解決策をお探しします。",
-    "recent-complaint": "最近のミンウン",
-    "title": "Minwon-itda"
+    "action-find": "機関を検索",
+    "action-recent-complaint": "最近の相談を見る",
+    "description": "お困りの点をお聞かせください。解決をサポートする機関をご案内いたします",
+    "recent-complaint": "最近検索した相談",
+    "recent-complaint-label": "最近検索した相談を確認できます",
+    "symbol": "仁川広域市",
+    "title": "民願イッダ"
   },
   "Language": {
-    "en": "English (영어)",
-    "ja": "日本語 (일본어)",
-    "ko": "한국어",
-    "zh": "中文 (중국어)"
+    "en": "English (英語)",
+    "ja": "日本語",
+    "ko": "한국어 (韓国語)",
+    "zh": "中文 (中国語)"
   }
 }

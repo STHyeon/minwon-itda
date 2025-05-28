@@ -1,47 +1,50 @@
 {
   "Common": {
+    "empty-data": "No search results or data could not be loaded.",
     "error-max-length": "Please enter up to {max} characters",
-    "error-min-length": "Please enter at least {min} characters"
+    "error-min-length": "Please provide more specific details (minimum {min} characters)",
+    "error-occurred": "An error occurred while processing the request"
   },
   "ComplaintAskPage": {
-    "description": "Please feel free to tell us anything, we'll help you find the information and solutions you need.",
+    "description": "Please freely enter any questions or concerns you have.\n(Example: \"How can I get a replacement for my Alien Registration Card?\")",
     "form": {
       "action-search": "Search",
-      "description-label": "Complaint Description",
-      "description-placeholder": "How do I get a reissue of a foreigner registration certificate?",
-      "title-label": "Complaint Title",
-      "title-placeholder": "Reissue of Foreigner Registration Certificate"
+      "question-label": "Complaint Details",
+      "question-placeholder": "How can I get a replacement for my Alien Registration Card?"
     },
     "loading-dialog": {
-      "title": "We are looking for an institution that can solve your complaint."
+      "title": "Please wait while we search for organizations that can help with your complaint"
     },
-    "title": "Find a complaint"
+    "title": "Find Related Organizations"
   },
   "ComplaintDetailPage": {
-    "action-reset": "Find a complaint again",
+    "action-reset": "Search Another Complaint",
     "agencies": {
-      "description": "We recommend related institutions based on the results of your complaint search.",
-      "title": "Related Institutions"
+      "description": "We will guide you to organizations related to your complaint",
+      "title": "Related Organizations"
+    },
+    "agency-card": {
+      "address": "Address",
+      "tel": "Phone Number"
     },
     "question": {
-      "title": "My Question"
+      "title": "Your Complaint"
     },
-    "title": "Find a complaint",
-    "type-card": {
-      "title": "Complaint Type"
-    }
+    "title": "Search Results"
   },
   "LandingPage": {
-    "action-find": "Find a complaint",
-    "action-recent-complaint": "View recent complaint",
-    "description": "Please feel free to tell us anything, we'll help you find the information and solutions you need.",
-    "recent-complaint": "Recent Complaint",
-    "title": "Minwon-itda"
+    "action-find": "Search Organizations",
+    "action-recent-complaint": "View Recent Complaints",
+    "description": "Tell us your concerns, and we'll find organizations that can help you",
+    "recent-complaint": "Recently Searched Complaints",
+    "recent-complaint-label": "You can check your recently searched complaints",
+    "symbol": "Incheon Metropolitan City",
+    "title": "Minwon Itda"
   },
   "Language": {
-    "en": "English (영어)",
-    "ja": "日本語 (일본어)",
-    "ko": "한국어",
-    "zh": "中文 (중국어)"
+    "en": "English",
+    "ja": "日本語 (Japanese)",
+    "ko": "한국어 (Korean)",
+    "zh": "中文 (Chinese)"
   }
 }

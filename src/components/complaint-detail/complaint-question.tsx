@@ -9,7 +9,7 @@ import type { StorageItem } from '@/typings/complaint';
 //
 //
 
-type PickedStorageItem = Pick<StorageItem, 'title' | 'description'>;
+type PickedStorageItem = Pick<StorageItem, 'question'>;
 
 interface ComplaintQuestionProps {
   data: PickedStorageItem | 'skeleton';
@@ -32,8 +32,7 @@ const ComplaintQuestion = ({ data }: ComplaintQuestionProps) => {
 
     return (
       <>
-        <p>{data.title}</p>
-        <p className="mt-2 text-sm text-gray-500">{data.description}</p>
+        <p>{data.question}</p>
       </>
     );
   };

@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { useLocale } from 'next-intl';
@@ -29,7 +30,18 @@ const HeroSection = () => {
       <HeroSectionLottie />
 
       <div className={cn('flex w-full max-w-96 flex-col gap-4')}>
-        <h2 className={cn('text-5xl font-bold')}>{intl('title')}</h2>
+        <div className={cn('flex flex-col gap-1.5')}>
+          <div className={cn('flex items-center gap-2')}>
+            <Image
+              src="/images/etc/incheon-symbol.svg"
+              alt="incheon-symbol"
+              width={20}
+              height={20}
+            />
+            <p className={cn('text-sm text-gray-500')}>{intl('symbol')}</p>
+          </div>
+          <h2 className={cn('text-5xl font-bold')}>{intl('title')}</h2>
+        </div>
 
         <div className={cn('flex w-full flex-col gap-8')}>
           <div className={cn('text-gray-500')}>{intl('description')}</div>

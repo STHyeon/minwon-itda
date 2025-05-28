@@ -1,47 +1,50 @@
 {
   "Common": {
+    "empty-data": "搜索结果或数据无法加载。",
     "error-max-length": "请输入最多{max}个字符",
-    "error-min-length": "请输入至少{min}个字符"
+    "error-min-length": "请提供更具体的内容（最少{min}个字符）",
+    "error-occurred": "请求处理过程中发生错误"
   },
   "ComplaintAskPage": {
-    "description": "请随意输入您的疑问或遇到的不便。",
+    "description": "请自由输入您的问题或不便之处。\n（例如：「我想了解外国人登记证补办程序」）",
     "form": {
       "action-search": "搜索",
-      "description-label": "投诉内容",
-      "description-placeholder": "如何重新申请外国人登记证？",
-      "title-label": "投诉标题",
-      "title-placeholder": "外国人登记证重新签发"
+      "question-label": "投诉内容",
+      "question-placeholder": "我想了解外国人登记证补办程序"
     },
     "loading-dialog": {
-      "title": "我们正在寻找可以解决您投诉的机构。"
+      "title": "请稍候，正在查找可以解决您问题的相关机构"
     },
-    "title": "查找投诉"
+    "title": "查找相关机构"
   },
   "ComplaintDetailPage": {
-    "action-reset": "查找投诉 重置",
+    "action-reset": "搜索其他投诉",
     "agencies": {
-      "description": "根据投诉查找结果，我们推荐相关机构。",
+      "description": "我们将为您介绍与您的投诉相关的机构",
       "title": "相关机构"
     },
-    "question": {
-      "title": "我的问题"
+    "agency-card": {
+      "address": "地址",
+      "tel": "电话号码"
     },
-    "title": "投诉查找结果",
-    "type-card": {
-      "title": "投诉分类"
-    }
+    "question": {
+      "title": "您的投诉"
+    },
+    "title": "搜索结果"
   },
   "LandingPage": {
-    "action-find": "查找投诉",
+    "action-find": "搜索机构",
     "action-recent-complaint": "查看最近投诉",
-    "description": "请随时告诉我们任何事情，我们会帮助您找到所需的信息和解决方案。",
-    "recent-complaint": "最近投诉",
-    "title": "Minwon-itda"
+    "description": "请告诉我们您的不便之处，我们将为您找到可以解决问题的机构",
+    "recent-complaint": "最近搜索的投诉",
+    "recent-complaint-label": "您可以查看最近搜索的投诉",
+    "symbol": "仁川广域市",
+    "title": "民愿易达"
   },
   "Language": {
-    "en": "English (영어)",
-    "ja": "日本語 (일본어)",
-    "ko": "한국어",
-    "zh": "中文 (중국어)"
+    "en": "English (英语)",
+    "ja": "日本語 (日语)",
+    "ko": "한국어 (韩语)",
+    "zh": "中文"
   }
 }

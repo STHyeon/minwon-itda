@@ -1,19 +1,13 @@
-export interface SimilarInfoResponse {
-  title: string;
-  content: string;
-  createDate: string;
-  mainSubName?: string;
-  depName?: string;
-}
-
 export interface ComplaintApiResponse {
-  similarItems: SimilarInfoResponse[];
-  hasMore: boolean;
+  ministry: string;
+  facility: string;
+  organizationName: string;
+  address: string;
+  tel: string;
 }
 
 export interface StorageItem {
   id: string;
-  title: string;
-  description: string;
-  data: SimilarInfoResponse[];
+  question: string;
+  data: ComplaintApiResponse[];
 }

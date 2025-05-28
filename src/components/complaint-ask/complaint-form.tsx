@@ -16,7 +16,6 @@ import {
   FormLabel,
   FormMessage,
 } from '../ui/form';
-import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import ComplaintFormLoadingDialog from './complaint-form-loading-dialog';
 
@@ -33,9 +32,7 @@ import { cn } from '@/lib/utils';
 //
 //
 
-const MIN_TITLE_LENGTH = 2;
-const MAX_TITLE_LENGTH = 100;
-const MIN_DESCRIPTION_LENGTH = 2;
+const MIN_DESCRIPTION_LENGTH = 5;
 const MAX_DESCRIPTION_LENGTH = 500;
 
 //
@@ -50,15 +47,7 @@ const ComplaintForm = () => {
   const [isPending, startTransition] = React.useTransition();
 
   const askFormSchema = z.object({
-    title: z
-      .string()
-      .min(MIN_TITLE_LENGTH, {
-        message: commonIntl('error-min-length', { min: MIN_TITLE_LENGTH }),
-      })
-      .max(MAX_TITLE_LENGTH, {
-        message: commonIntl('error-max-length', { max: MAX_TITLE_LENGTH }),
-      }),
-    description: z
+    question: z
       .string()
       .min(MIN_DESCRIPTION_LENGTH, {
         message: commonIntl('error-min-length', {
@@ -74,8 +63,7 @@ const ComplaintForm = () => {
 
   const useFormMethods = useForm<z.infer<typeof askFormSchema>>({
     defaultValues: {
-      title: '',
-      description: '',
+      question: '',
     },
     resolver: zodResolver(askFormSchema),
   });
@@ -87,17 +75,18 @@ const ComplaintForm = () => {
     startTransition(async () => {
       try {
         const url = new URL('/api/complaint/ask', window.location.origin);
-        url.searchParams.append('keyword', data.description);
+        url.searchParams.append('keyword', data.question);
 
         const request = await fetch(url);
-        const response =
-          (await request.json()) as ApiResponse<ComplaintApiResponse>;
+        const response = (await request.json()) as ApiResponse<
+          ComplaintApiResponse[]
+        >;
 
         if (!request.ok) {
           const errorMessage =
             typeof response.error === 'string'
               ? response.error
-              : '요청 처리 중 오류가 발생했습니다';
+              : commonIntl('error-occurred');
 
           toast.error(errorMessage);
 
@@ -107,9 +96,8 @@ const ComplaintForm = () => {
         startTransition(() => {
           const updatedItems = addItemToLocalStorage(
             COMPLIANT_STORAGE_KEY,
-            data.title,
-            data.description,
-            response.data?.similarItems
+            data.question,
+            response.data
           );
 
           router.push(`${ROUTES.complaintAskDetail(updatedItems[0].id)}`);
@@ -134,31 +122,14 @@ const ComplaintForm = () => {
         >
           <FormField
             control={useFormMethods.control}
-            name="title"
+            name="question"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{intl('form.title-label')}</FormLabel>
-                <FormControl>
-                  <Input
-                    {...field}
-                    placeholder={intl('form.title-placeholder')}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={useFormMethods.control}
-            name="description"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>{intl('form.description-label')}</FormLabel>
+                <FormLabel>{intl('form.question-label')}</FormLabel>
                 <FormControl>
                   <Textarea
                     {...field}
-                    placeholder={intl('form.description-placeholder')}
+                    placeholder={intl('form.question-placeholder')}
                   />
                 </FormControl>
                 <FormMessage />

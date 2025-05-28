@@ -29,6 +29,7 @@ interface ComplaintAgenciesProps {
 
 const ComplaintAgencies = ({ data }: ComplaintAgenciesProps) => {
   const intl = useTranslations('ComplaintDetailPage');
+  const commonIntl = useTranslations('Common');
 
   /**
    *
@@ -54,7 +55,7 @@ const ComplaintAgencies = ({ data }: ComplaintAgenciesProps) => {
         <div className={cn('flex flex-col items-center justify-center gap-2')}>
           <div className={cn('flex w-full flex-col items-center gap-4')}>
             <p className={cn('text-2xl font-bold')}>
-              검색 결과가 없거나 데이터를 불러올 수 없어요.
+              {commonIntl('empty-data')}
             </p>
             <Image
               src="/images/errors/not-found.jpg"

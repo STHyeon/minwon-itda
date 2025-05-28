@@ -8,7 +8,6 @@ import { Button } from '../ui/button';
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -64,20 +63,22 @@ const HeroCards = () => {
             <div className={cn('flex flex-col gap-4')}>
               <CardHeader>
                 <CardTitle className={cn('line-clamp-1')}>
-                  {content.title}
+                  {content.question}
                 </CardTitle>
-                <CardDescription className={cn('line-clamp-2')}>
-                  {content.description}
-                </CardDescription>
               </CardHeader>
               <CardContent>
+                <p className={cn('text-sm text-gray-500')}>
+                  {intl('recent-complaint-label')}
+                </p>
                 <ul className={cn('flex flex-col gap-2')}>
                   {content.data.slice(0, 3).map((item, index) => (
                     <li key={index} className={cn('flex items-center gap-2')}>
                       <span className={cn('text-sm text-gray-500')}>
                         {index + 1}.
                       </span>
-                      <span className={cn('text-sm')}>{item.title}</span>
+                      <span className={cn('text-sm')}>
+                        {item.organizationName}
+                      </span>
                     </li>
                   ))}
                 </ul>

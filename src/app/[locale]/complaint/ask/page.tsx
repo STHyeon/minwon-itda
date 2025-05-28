@@ -18,7 +18,12 @@ const ComplaintAsk = () => {
     <div className={cn('flex w-full flex-col items-center gap-16')}>
       <h2 className={cn('text-5xl font-bold')}>{intl('title')}</h2>
 
-      <div className={cn('w-full max-w-96')}>
+      <div
+        className={cn(
+          'flex w-full max-w-2xl flex-col gap-6 text-center whitespace-pre-wrap'
+        )}
+      >
+        <p>{intl('description')}</p>
         <ComplaintForm />
       </div>
     </div>

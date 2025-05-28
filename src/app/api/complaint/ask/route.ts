@@ -1,5 +1,4 @@
-import { fetchSimilarInfo } from './fetchSimilarInfo';
-import { fetchTranslate } from './fetchTranslate';
+import { findRecommendMinistry } from './findRecommendMinistry';
 
 import type { NextRequest } from 'next/server';
 
@@ -14,18 +13,13 @@ export async function GET(request: NextRequest) {
 
   const searchParams = request.nextUrl.searchParams;
   const reqKeyword = searchParams.get('keyword') || '';
-  const reqPage = searchParams.get('page') || '1';
 
   try {
-    const translate = await fetchTranslate(reqKeyword);
-    const similarInfoResponse = await fetchSimilarInfo({
-      keyword: translate,
-      page: reqPage,
-    });
+    const recommendMinistry = await findRecommendMinistry(reqKeyword);
 
     await ensureMinimumResponseTime(startTime);
 
-    return Response.json({ data: similarInfoResponse });
+    return Response.json({ data: recommendMinistry });
   } catch (error) {
     console.error('API 요청 오류:', error);
     await ensureMinimumResponseTime(startTime);
