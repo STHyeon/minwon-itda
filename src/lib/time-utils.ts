@@ -1,5 +1,5 @@
 // Constants
-const MIN_RESPONSE_TIME_MS = 5000;
+const MIN_RESPONSE_TIME_MS = 3000;
 
 //
 //

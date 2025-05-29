@@ -121,7 +121,7 @@ const ComplaintAnswer = () => {
 
       {renderComplaintData()}
 
-      <div className={cn('sticky bottom-10 w-full max-w-lg shadow-xl/30')}>
+      <div className={cn('sticky bottom-10 z-10 w-full max-w-lg shadow-xl/30')}>
         <Button className={cn('w-full')} disabled={isLoading} asChild>
           {/* 
           - problem: createNavigation 사용시, asChild가 정상적으로 작동하지 않음

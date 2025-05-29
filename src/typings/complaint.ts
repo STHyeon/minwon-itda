@@ -3,6 +3,7 @@ export interface ComplaintApiResponse {
   facility: string;
   organizationName: string;
   address: string;
+  originalAddress: string;
   tel: string;
 }
 

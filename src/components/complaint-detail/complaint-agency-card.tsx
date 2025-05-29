@@ -14,6 +14,7 @@ import {
   CardHeader,
   CardTitle,
 } from '../ui/card';
+import ComplaintAgencyMap from './complaint-agency-map';
 
 import type { ComplaintApiResponse } from '@/typings/complaint';
 
@@ -71,18 +72,23 @@ const ComplaintAgencyCard = ({ data }: ComplaintAgencyCardProps) => {
                 <tbody>
                   <tr>
                     <td className={cn('py-2 font-medium')}>
-                      {intl('agency-card.address')}
-                    </td>
-                    <td className={cn('py-2')}>{data.address}</td>
-                  </tr>
-                  <tr>
-                    <td className={cn('py-2 font-medium')}>
                       {intl('agency-card.tel')}
                     </td>
                     <td className={cn('py-2')}>{data.tel}</td>
                   </tr>
+                  <tr>
+                    <td className={cn('py-2 font-medium')}>
+                      {intl('agency-card.address')}
+                    </td>
+                    <td className={cn('py-2')}>{data.address}</td>
+                  </tr>
                 </tbody>
               </table>
+
+              <ComplaintAgencyMap
+                address={data.originalAddress}
+                facility={data.facility}
+              />
             </CardContent>
           </AccordionContent>
         </AccordionItem>
