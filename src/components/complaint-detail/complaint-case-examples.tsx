@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import DOMPurify from 'dompurify';
 import { useTranslations } from 'next-intl';
 
 import {
@@ -114,9 +115,14 @@ const ComplaintCaseExamples = ({ data }: ComplaintCaseExamplesProps) => {
                   </tbody>
                 </table>
 
-                <p className={cn('whitespace-pre-line')}>
-                  {decodeHtmlAndHandleBreaks(data.ansCntnCl)}
-                </p>
+                <p
+                  className={cn('whitespace-pre-line')}
+                  dangerouslySetInnerHTML={{
+                    __html: DOMPurify.sanitize(
+                      decodeHtmlAndHandleBreaks(data.ansCntnCl)
+                    ),
+                  }}
+                />
               </CardContent>
             </AccordionContent>
           </AccordionItem>

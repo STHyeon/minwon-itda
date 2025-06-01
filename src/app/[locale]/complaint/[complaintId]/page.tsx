@@ -71,7 +71,7 @@ const ComplaintAnswer = () => {
       <div className={cn('relative flex w-full flex-col gap-8 md:flex-row')}>
         <div
           className={cn(
-            'flex h-fit w-full flex-col gap-6 md:sticky md:top-4 md:max-w-80'
+            `flex h-fit w-full shrink-0 flex-col gap-6 md:sticky md:top-4 md:max-w-[20rem]`
           )}
         >
           <ComplaintQuestion
@@ -81,7 +81,11 @@ const ComplaintAnswer = () => {
           <ComplaintAgencyResolution isLoading={isDataLoading} />
         </div>
 
-        <div className={cn('flex flex-1 flex-col gap-6')}>
+        <div
+          className={cn(
+            'flex w-full flex-1 flex-col gap-6 md:w-[calc(100%-20rem)]'
+          )}
+        >
           <ComplaintAgencies
             data={
               isDataLoading ? 'skeleton' : complaintData.data.recommendAgencies
