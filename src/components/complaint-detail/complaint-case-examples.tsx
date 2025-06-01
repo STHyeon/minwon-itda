@@ -90,7 +90,7 @@ const ComplaintCaseExamples = ({ data }: ComplaintCaseExamplesProps) => {
 
                 <table className={cn('w-full')}>
                   <colgroup>
-                    <col style={{ width: '10%' }} />
+                    <col style={{ width: 'fit-content' }} />
                     <col />
                   </colgroup>
                   <tbody>

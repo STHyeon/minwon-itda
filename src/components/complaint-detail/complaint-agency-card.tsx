@@ -61,7 +61,7 @@ const ComplaintAgencyCard = ({ recommendAgency }: ComplaintAgencyCardProps) => {
             <CardContent>
               <table className={cn('w-full')}>
                 <colgroup>
-                  <col style={{ width: '20%' }} />
+                  <col style={{ width: 'fit-content' }} />
                   <col />
                 </colgroup>
                 <tbody>
