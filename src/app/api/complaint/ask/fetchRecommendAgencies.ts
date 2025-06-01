@@ -1,7 +1,8 @@
 import { GoogleGenAI } from '@google/genai';
 
+import { extractJsonArray } from '../../_utils/extract-json-array';
+
 import jsonIncheonAgencies from '@/assets/etc/incheon-agencies.json';
-import { extractJsonArray } from '@/lib/extract-json-array';
 
 //
 //

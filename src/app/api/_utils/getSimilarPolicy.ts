@@ -1,10 +1,10 @@
+import { fetchPolicyQnaItem } from '../complaint/ask/fetchPolicyQnaItem';
+import { fetchPolicyQnaList } from '../complaint/ask/fetchPolicyQnaList';
 import { compareSentenceSimilarity } from './compareSentenceSimilarity';
-import { fetchPolicyQnaItem } from './fetchPolicyQnaItem';
-import { fetchPolicyQnaList } from './fetchPolicyQnaList';
+import { translateText } from './translateText';
 
 import type { LanguageType } from '@/typings/enums';
 
-import { translateText } from '@/lib/translateText';
 import { LANGUAGE } from '@/typings/enums';
 
 //
