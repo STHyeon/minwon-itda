@@ -11,7 +11,7 @@ import {
 import { Skeleton } from '../ui/skeleton';
 import ComplaintAgencyCard from './complaint-agency-card';
 
-import type { StorageItem } from '@/typings/complaint';
+import type { SavingStorageData } from '@/typings/etc';
 
 import { cn } from '@/lib/utils';
 
@@ -20,7 +20,7 @@ import { cn } from '@/lib/utils';
 //
 
 interface ComplaintAgenciesProps {
-  data: 'skeleton' | StorageItem['data'];
+  data: 'skeleton' | SavingStorageData['recommendAgencies'];
 }
 
 //
@@ -72,8 +72,8 @@ const ComplaintAgencies = ({ data }: ComplaintAgenciesProps) => {
 
     return (
       <div className={cn('flex flex-col gap-2')}>
-        {data.map((item, index) => (
-          <ComplaintAgencyCard key={index} data={item} />
+        {data.map((recommendAgency, index) => (
+          <ComplaintAgencyCard key={index} recommendAgency={recommendAgency} />
         ))}
       </div>
     );

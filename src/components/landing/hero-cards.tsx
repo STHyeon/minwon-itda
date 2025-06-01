@@ -13,7 +13,7 @@ import {
   CardTitle,
 } from '../ui/card';
 
-import type { StorageItem } from '@/typings/complaint';
+import type { SavingStorage } from '@/typings/etc';
 
 import { COMPLIANT_STORAGE_KEY } from '@/constants/complaint';
 import { ROUTES } from '@/constants/routes';
@@ -28,9 +28,9 @@ const HeroCards = () => {
   const locale = useLocale();
   const intl = useTranslations('LandingPage');
 
-  const [heroCardsContent, setHeroCardsContent] = React.useState<StorageItem[]>(
-    []
-  );
+  const [heroCardsContent, setHeroCardsContent] = React.useState<
+    SavingStorage[]
+  >([]);
 
   //
   // 최근 검색한 민원 데이터 가져오기
@@ -71,16 +71,18 @@ const HeroCards = () => {
                   {intl('recent-complaint-label')}
                 </p>
                 <ul className={cn('flex flex-col gap-2')}>
-                  {content.data.slice(0, 3).map((item, index) => (
-                    <li key={index} className={cn('flex items-center gap-2')}>
-                      <span className={cn('text-sm text-gray-500')}>
-                        {index + 1}.
-                      </span>
-                      <span className={cn('text-sm')}>
-                        {item.organizationName}
-                      </span>
-                    </li>
-                  ))}
+                  {content.data.recommendAgencies
+                    .slice(0, 3)
+                    .map((recommendAgency, index) => (
+                      <li key={index} className={cn('flex items-center gap-2')}>
+                        <span className={cn('text-sm text-gray-500')}>
+                          {index + 1}.
+                        </span>
+                        <span className={cn('text-sm')}>
+                          {recommendAgency.organizationName}
+                        </span>
+                      </li>
+                    ))}
                 </ul>
               </CardContent>
             </div>

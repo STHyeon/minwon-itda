@@ -1,4 +1,3 @@
-import { ChevronDownIcon as IconChevronDown } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 import {
@@ -16,7 +15,7 @@ import {
 } from '../ui/card';
 import ComplaintAgencyMap from './complaint-agency-map';
 
-import type { ComplaintApiResponse } from '@/typings/complaint';
+import type { ComplaintApiResponse } from '@/typings/api';
 
 import { cn } from '@/lib/utils';
 
@@ -25,14 +24,14 @@ import { cn } from '@/lib/utils';
 //
 
 interface ComplaintAgencyCardProps {
-  data: ComplaintApiResponse;
+  recommendAgency: ComplaintApiResponse;
 }
 
 //
 //
 //
 
-const ComplaintAgencyCard = ({ data }: ComplaintAgencyCardProps) => {
+const ComplaintAgencyCard = ({ recommendAgency }: ComplaintAgencyCardProps) => {
   const intl = useTranslations('ComplaintDetailPage');
 
   //
@@ -48,15 +47,11 @@ const ComplaintAgencyCard = ({ data }: ComplaintAgencyCardProps) => {
               <div className={cn('flex w-full items-center justify-between')}>
                 <div className={cn('flex flex-col gap-1.5')}>
                   <CardTitle className={cn('line-clamp-1')}>
-                    {data.facility}
+                    {recommendAgency.facility}
                   </CardTitle>
                   <CardDescription className={cn('line-clamp-2')}>
-                    {data.organizationName}
+                    {recommendAgency.organizationName}
                   </CardDescription>
-                </div>
-
-                <div className={cn('shrink-0')}>
-                  <IconChevronDown />
                 </div>
               </div>
             </CardHeader>
@@ -74,20 +69,20 @@ const ComplaintAgencyCard = ({ data }: ComplaintAgencyCardProps) => {
                     <td className={cn('py-2 font-medium')}>
                       {intl('agency-card.tel')}
                     </td>
-                    <td className={cn('py-2')}>{data.tel}</td>
+                    <td className={cn('py-2')}>{recommendAgency.tel}</td>
                   </tr>
                   <tr>
                     <td className={cn('py-2 font-medium')}>
                       {intl('agency-card.address')}
                     </td>
-                    <td className={cn('py-2')}>{data.address}</td>
+                    <td className={cn('py-2')}>{recommendAgency.address}</td>
                   </tr>
                 </tbody>
               </table>
 
               <ComplaintAgencyMap
-                address={data.originalAddress}
-                facility={data.facility}
+                address={recommendAgency.originalAddress}
+                facility={recommendAgency.facility}
               />
             </CardContent>
           </AccordionContent>

@@ -3,13 +3,13 @@ import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Skeleton } from '../ui/skeleton';
 
-import type { StorageItem } from '@/typings/complaint';
+import type { SavingStorage } from '@/typings/etc';
 
 //
 //
 //
 
-type PickedStorageItem = Pick<StorageItem, 'question'>;
+type PickedStorageItem = Pick<SavingStorage, 'question'>;
 
 interface ComplaintQuestionProps {
   data: PickedStorageItem | 'skeleton';

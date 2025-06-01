@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
-import type { ComplaintApiResponse, StorageItem } from '@/typings/complaint';
+import type { SavingStorage, SavingStorageData } from '@/typings/etc';
 
 //
 //
@@ -9,7 +9,7 @@ import type { ComplaintApiResponse, StorageItem } from '@/typings/complaint';
 /**
  * Saves an array of items to localStorage
  */
-function saveToLocalStorage(key: string, items: StorageItem[]): void {
+function saveToLocalStorage(key: string, items: SavingStorage[]): void {
   try {
     // Check if window is defined (client-side)
     if (typeof window === 'undefined') {
@@ -27,8 +27,8 @@ function saveToLocalStorage(key: string, items: StorageItem[]): void {
  */
 function createStorageItem(
   question: string,
-  data: ComplaintApiResponse[] = []
-): StorageItem {
+  data: SavingStorageData
+): SavingStorage {
   return {
     id: uuidv4(),
     question,
@@ -39,7 +39,7 @@ function createStorageItem(
 /**
  * Retrieves array of items from localStorage
  */
-export function getFromLocalStorage(key: string): StorageItem[] {
+export function getFromLocalStorage(key: string): SavingStorage[] {
   try {
     // Check if window is defined (client-side)
     if (typeof window === 'undefined') {
@@ -62,8 +62,8 @@ export function getFromLocalStorage(key: string): StorageItem[] {
 export function addItemToLocalStorage(
   key: string,
   question: string,
-  data: ComplaintApiResponse[] = []
-): StorageItem[] {
+  data: SavingStorageData
+): SavingStorage[] {
   const items = getFromLocalStorage(key);
   const newItem = createStorageItem(question, data);
   const updatedItems = [newItem, ...items].slice(0, 3);

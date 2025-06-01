@@ -1,6 +1,6 @@
 import { GoogleGenAI } from '@google/genai';
 
-import jsonIncheonMinistry from '@/assets/etc/incheon-ministry.json';
+import jsonIncheonAgencies from '@/assets/etc/incheon-agencies.json';
 import { extractJsonArray } from '@/lib/extract-json-array';
 
 //
@@ -10,6 +10,9 @@ import { extractJsonArray } from '@/lib/extract-json-array';
 const client = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 const SYSTEM_INSTRUCTION = `You are an assistant that analyzes complaints and recommends relevant government organizations. You receive a complaint and a list of government organizations, and respond with the most relevant organizations that can help resolve the complaint.
+
+Please find relevant organizations from the following JSON data:
+${JSON.stringify(jsonIncheonAgencies)}
 
 Your response must be a JSON array containing up to 10 organizations. An organization object has the following schema:
 
@@ -60,14 +63,11 @@ For Japanese input:
 /**
  *
  */
-export async function findRecommendMinistry(question: string) {
+export async function fetchRecommendAgencies(question: string) {
   try {
     const contents = `
 Please analyze the following complaint and recommend up to 10 organizations that can help resolve it.
-Complaint: ${question}
-
-Please find relevant organizations from the following JSON data:
-${JSON.stringify(jsonIncheonMinistry)}`;
+Complaint: ${question}`;
 
     const response = await client.models.generateContent({
       model: 'gemini-2.0-flash',

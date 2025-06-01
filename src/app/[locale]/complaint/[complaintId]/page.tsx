@@ -6,10 +6,12 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 
-import type { StorageItem } from '@/typings/complaint';
+import type { SavingStorage } from '@/typings/etc';
 
 import {
   ComplaintAgencies,
+  ComplaintAgencyResolution,
+  ComplaintCaseExamples,
   ComplaintQuestion,
 } from '@/components/complaint-detail';
 import { Button } from '@/components/ui/button';
@@ -37,9 +39,8 @@ const ComplaintAnswer = () => {
 
   const complaintId = params.complaintId as string;
 
-  const [complaintData, setComplaintData] = React.useState<null | StorageItem>(
-    null
-  );
+  const [complaintData, setComplaintData] =
+    React.useState<null | SavingStorage>(null);
 
   const [isLoading, setLoading] = React.useState(true);
 
@@ -67,16 +68,28 @@ const ComplaintAnswer = () => {
     }
 
     return (
-      <div className={cn('flex w-full flex-col gap-8 md:flex-row')}>
-        <div className={cn('flex w-full flex-col gap-6 md:max-w-80')}>
+      <div className={cn('relative flex w-full flex-col gap-8 md:flex-row')}>
+        <div
+          className={cn(
+            'flex h-fit w-full flex-col gap-6 md:sticky md:top-4 md:max-w-80'
+          )}
+        >
           <ComplaintQuestion
             data={isDataLoading ? 'skeleton' : complaintData}
           />
+
+          <ComplaintAgencyResolution isLoading={isDataLoading} />
         </div>
 
-        <div className={cn('flex-1')}>
+        <div className={cn('flex flex-1 flex-col gap-6')}>
+          {complaintData?.data.policyQnaItem ? (
+            <ComplaintCaseExamples data={complaintData.data.policyQnaItem} />
+          ) : null}
+
           <ComplaintAgencies
-            data={isDataLoading ? 'skeleton' : complaintData.data}
+            data={
+              isDataLoading ? 'skeleton' : complaintData.data.recommendAgencies
+            }
           />
         </div>
       </div>

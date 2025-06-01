@@ -3,10 +3,11 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
+import { LanguageSelector } from '../language';
 import { Button } from '../ui/button';
 import {
   Form,
@@ -19,8 +20,8 @@ import {
 import { Textarea } from '../ui/textarea';
 import ComplaintFormLoadingDialog from './complaint-form-loading-dialog';
 
-import type { ApiResponse } from '@/typings/api';
-import type { ComplaintApiResponse } from '@/typings/complaint';
+import type { ApiResponse } from '@/typings/api-response';
+import type { SavingStorageData } from '@/typings/etc';
 
 import { COMPLIANT_STORAGE_KEY } from '@/constants/complaint';
 import { ROUTES } from '@/constants/routes';
@@ -41,12 +42,14 @@ const MAX_DESCRIPTION_LENGTH = 500;
 
 const ComplaintForm = () => {
   const router = useRouter();
+  const locale = useLocale();
   const intl = useTranslations('ComplaintAskPage');
   const commonIntl = useTranslations('Common');
 
   const [isPending, startTransition] = React.useTransition();
 
   const askFormSchema = z.object({
+    language: z.string(),
     question: z
       .string()
       .min(MIN_DESCRIPTION_LENGTH, {
@@ -64,6 +67,7 @@ const ComplaintForm = () => {
   const useFormMethods = useForm<z.infer<typeof askFormSchema>>({
     defaultValues: {
       question: '',
+      language: locale,
     },
     resolver: zodResolver(askFormSchema),
   });
@@ -76,13 +80,14 @@ const ComplaintForm = () => {
       try {
         const url = new URL('/api/complaint/ask', window.location.origin);
         url.searchParams.append('keyword', data.question);
+        url.searchParams.append('language', data.language);
 
         const request = await fetch(url);
-        const response = (await request.json()) as ApiResponse<
-          ComplaintApiResponse[]
-        >;
+        const response =
+          (await request.json()) as ApiResponse<SavingStorageData>;
+        const storageData = response.data;
 
-        if (!request.ok) {
+        if (!request.ok || !storageData) {
           const errorMessage =
             typeof response.error === 'string'
               ? response.error
@@ -97,7 +102,7 @@ const ComplaintForm = () => {
           const updatedItems = addItemToLocalStorage(
             COMPLIANT_STORAGE_KEY,
             data.question,
-            response.data
+            storageData
           );
 
           router.push(`${ROUTES.complaintAskDetail(updatedItems[0].id)}`);
@@ -120,6 +125,22 @@ const ComplaintForm = () => {
             void handleFormSubmit();
           }}
         >
+          {/* 민원 질문 언어 */}
+          <FormField
+            control={useFormMethods.control}
+            name="language"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>질문 언어 선택</FormLabel>
+                <FormControl>
+                  <LanguageSelector onChange={field.onChange} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* 민원 내용 */}
           <FormField
             control={useFormMethods.control}
             name="question"
@@ -129,7 +150,10 @@ const ComplaintForm = () => {
                 <FormControl>
                   <Textarea
                     {...field}
+                    className={cn('min-h-56')}
                     placeholder={intl('form.question-placeholder')}
+                    minLength={MIN_DESCRIPTION_LENGTH}
+                    maxLength={MAX_DESCRIPTION_LENGTH}
                   />
                 </FormControl>
                 <FormMessage />

@@ -6,9 +6,3 @@ export interface ComplaintApiResponse {
   originalAddress: string;
   tel: string;
 }
-
-export interface StorageItem {
-  id: string;
-  question: string;
-  data: ComplaintApiResponse[];
-}
