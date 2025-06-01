@@ -1,49 +1,59 @@
 {
   "Common": {
-    "empty-data": "検索結果が見つからないか、データを読み込めませんでした。",
-    "error-max-length": "最大{max}文字まで入力可能です",
-    "error-min-length": "より具体的な内容を入力してください（最小{min}文字）",
-    "error-occurred": "リクエストの処理中にエラーが発生しました"
+    "empty-data": "検索結果がないか、データを読み込めません。",
+    "error-max-length": "{max}文字以内で入力してください。",
+    "error-min-length": "{min}文字以上入力してください。",
+    "error-occurred": "リクエスト処理中にエラーが発生しました。"
   },
   "ComplaintAskPage": {
-    "description": "ご質問やお困りの点を自由に入力してください。\n（例：「外国人登録証の再発行手続きについて知りたいです」）",
+    "description": "ご質問や不便な点を自由に入力してください。\n（キーワードを中心に入力すると、より正確な結果が得られます）",
     "form": {
-      "action-search": "検索",
-      "question-label": "相談内容",
-      "question-placeholder": "外国人登録証の再発行手続きについて知りたいです"
+      "action-search": "検索する",
+      "language-label": "質問言語の選択",
+      "question-label": "お問い合わせ内容",
+      "question-placeholder": "外国人登録証の再発行申請方法"
     },
     "loading-dialog": {
-      "title": "お待ちください。相談内容に応じた機関を検索しています"
+      "title": "入力された内容をAIが分析しています。\nお問い合わせ解決のための最適な機関を探しています。"
     },
-    "title": "関連機関を探す"
+    "title": "お問い合わせを入力"
   },
   "ComplaintDetailPage": {
-    "action-reset": "別の相談を検索",
+    "action-reset": "他のお問い合わせを検索",
     "agencies": {
-      "description": "ご相談内容に関連する機関をご案内いたします",
+      "description": "入力されたお問い合わせに関連する機関をご案内します",
       "title": "関連機関"
     },
     "agency-card": {
-      "address": "住所",
-      "tel": "電話番号"
+      "address": "機関住所：",
+      "tel": "電話番号："
+    },
+    "agency-resolution": {
+      "title": "外国人相談窓口"
+    },
+    "case-examples": {
+      "department": "担当部署：",
+      "description": "過去に解決されたお問い合わせを参考に解決方法をご確認ください。",
+      "law": "関連法令：",
+      "title": "事例で見るお問い合わせ解決方法"
     },
     "question": {
-      "title": "ご相談内容"
+      "title": "私の質問"
     },
-    "title": "検索結果"
+    "title": "お問い合わせ検索結果"
   },
   "LandingPage": {
-    "action-find": "機関を検索",
-    "action-recent-complaint": "最近の相談を見る",
-    "description": "お困りの点をお聞かせください。解決をサポートする機関をご案内いたします",
-    "recent-complaint": "最近検索した相談",
-    "recent-complaint-label": "最近検索した相談を確認できます",
+    "action-find": "質問する",
+    "description": "お問い合わせ内容を入力してください。AIが入力された内容を分析し、類似事例の解決方法と役立つ機関を探します。",
+    "recent-complaint": "最近検索したお問い合わせ",
+    "recent-complaint-action": "お問い合わせを見る",
+    "recent-complaint-label": "最近検索したお問い合わせを確認できます",
     "symbol": "仁川広域市",
-    "title": "民願イッダ"
+    "title": "ミンウォンイッダ"
   },
   "Language": {
     "en": "English (英語)",
-    "ja": "日本語",
+    "ja": "日本語 (日本語)",
     "ko": "한국어 (韓国語)",
     "zh": "中文 (中国語)"
   }

@@ -131,7 +131,7 @@ const ComplaintForm = () => {
             name="language"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>질문 언어 선택</FormLabel>
+                <FormLabel>{intl('form.language-label')}</FormLabel>
                 <FormControl>
                   <LanguageSelector onChange={field.onChange} />
                 </FormControl>

@@ -95,7 +95,7 @@ const HeroCards = () => {
                 <Link
                   href={`/${locale}/${ROUTES.complaintAskDetail(content.id)}`}
                 >
-                  {intl('action-recent-complaint')}
+                  {intl('recent-complaint-action')}
                 </Link>
               </Button>
             </CardFooter>

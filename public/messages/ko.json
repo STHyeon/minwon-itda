@@ -1,43 +1,53 @@
 {
   "Common": {
     "empty-data": "검색 결과가 없거나 데이터를 불러올 수 없어요.",
-    "error-max-length": "최대 {max}자까지 입력 가능합니다",
-    "error-min-length": "내용을 더 구체적으로 작성해 주세요 (최소 {min}자)",
-    "error-occurred": "요청 처리 중 오류가 발생했습니다"
+    "error-max-length": "{max}자까지만 입력해 주세요.",
+    "error-min-length": "{min}자 이상 입력해 주세요.",
+    "error-occurred": "요청 처리 중 오류가 발생했어요."
   },
   "ComplaintAskPage": {
-    "description": "궁금하신 점이나 불편사항을 자유롭게 입력해 주세요.\n(예: \"외국인등록증 재발급 절차를 알고 싶습니다\")",
+    "description": "궁금하신 점이나 불편 사항을 자유롭게 입력해 주세요.\n(키워드 중심으로 입력하시면 더 정확한 결과를 얻을 수 있어요)",
     "form": {
-      "action-search": "검색",
+      "action-search": "검색하기",
+      "language-label": "질문 언어 선택",
       "question-label": "민원 내용",
-      "question-placeholder": "외국인등록증 재발급 절차를 알고 싶습니다"
+      "question-placeholder": "외국인등록증 재발급 신청 방법"
     },
     "loading-dialog": {
-      "title": "잠시만 기다려 주세요. 민원 해결을 위한 기관을 찾고 있습니다"
+      "title": "입력하신 내용을 AI가 분석하고 있어요.\n민원 해결을 위한 최적의 기관을 찾고 있어요."
     },
-    "title": "관련 기관 찾기"
+    "title": "민원 질문하기"
   },
   "ComplaintDetailPage": {
     "action-reset": "다른 민원 검색하기",
     "agencies": {
-      "description": "입력하신 민원과 관련된 기관을 안내해 드립니다",
+      "description": "입력하신 민원과 관련된 기관을 안내해 드려요",
       "title": "관련 기관"
     },
     "agency-card": {
-      "address": "기관 주소",
-      "tel": "전화번호"
+      "address": "기관 주소:",
+      "tel": "전화번호:"
+    },
+    "agency-resolution": {
+      "title": "외국인 민원 창구"
+    },
+    "case-examples": {
+      "department": "담당 부서:",
+      "description": "이전에 해결된 민원을 참고해서 해결 방법을 확인해 보세요.",
+      "law": "관련 법령:",
+      "title": "사례로 보는 민원 해결 방법"
     },
     "question": {
-      "title": "입력하신 민원"
+      "title": "나의 질문"
     },
     "title": "민원 검색 결과"
   },
   "LandingPage": {
-    "action-find": "기관 검색하기",
-    "action-recent-complaint": "최근 민원 보기",
-    "description": "불편사항을 말씀해 주시면, 해결을 도와드릴 기관을 찾아드립니다",
+    "action-find": "질문하기",
+    "description": "민원을 말씀해 주세요. AI가 입력하신 내용을 분석해서 비슷한 사례의 해결 방법과 도움이 될 기관을 찾아드려요.",
     "recent-complaint": "최근 검색한 민원",
-    "recent-complaint-label": "최근 검색한 민원을 확인할 수 있습니다",
+    "recent-complaint-action": "민원 보기",
+    "recent-complaint-label": "최근 검색한 민원을 확인할 수 있어요",
     "symbol": "인천광역시",
     "title": "민원잇다"
   },

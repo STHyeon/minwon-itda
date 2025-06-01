@@ -82,15 +82,19 @@ const ComplaintAnswer = () => {
         </div>
 
         <div className={cn('flex flex-1 flex-col gap-6')}>
-          {complaintData?.data.policyQnaItem ? (
-            <ComplaintCaseExamples data={complaintData.data.policyQnaItem} />
-          ) : null}
-
           <ComplaintAgencies
             data={
               isDataLoading ? 'skeleton' : complaintData.data.recommendAgencies
             }
           />
+
+          {complaintData?.data.policyQnaItem ? (
+            <ComplaintCaseExamples
+              data={
+                isDataLoading ? 'skeleton' : complaintData.data.policyQnaItem
+              }
+            />
+          ) : null}
         </div>
       </div>
     );

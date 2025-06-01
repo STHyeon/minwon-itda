@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { useTranslations } from 'next-intl';
 
 import {
   Accordion,
@@ -45,6 +46,8 @@ function decodeHtmlAndHandleBreaks(text: string) {
 //
 
 const ComplaintCaseExamples = ({ data }: ComplaintCaseExamplesProps) => {
+  const intl = useTranslations('ComplaintDetailPage');
+
   /**
    *
    */
@@ -90,16 +93,20 @@ const ComplaintCaseExamples = ({ data }: ComplaintCaseExamplesProps) => {
 
                 <table className={cn('w-full')}>
                   <colgroup>
-                    <col style={{ width: 'fit-content' }} />
+                    <col style={{ width: '20%' }} />
                     <col />
                   </colgroup>
                   <tbody>
                     <tr>
-                      <td className={cn('py-1 font-medium')}>담당부서:</td>
+                      <td className={cn('py-1 font-medium')}>
+                        {intl('case-examples.department')}
+                      </td>
                       <td className={cn('py-1')}>{data.deptName}</td>
                     </tr>
                     <tr>
-                      <td className={cn('py-1 font-medium')}>관련 법령:</td>
+                      <td className={cn('py-1 font-medium')}>
+                        {intl('case-examples.law')}
+                      </td>
                       <td className={cn('py-1')}>
                         {data?.lawList?.map(law => law?.fullName).join(' / ')}
                       </td>
@@ -125,10 +132,8 @@ const ComplaintCaseExamples = ({ data }: ComplaintCaseExamplesProps) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>사례로 보는 민원 해결 방법</CardTitle>
-        <CardDescription>
-          이전에 해결된 민원을 참고하여 민원을 해결하는 방법을 확인해보세요.
-        </CardDescription>
+        <CardTitle>{intl('case-examples.title')}</CardTitle>
+        <CardDescription>{intl('case-examples.description')}</CardDescription>
       </CardHeader>
       <CardContent>{renderContent()}</CardContent>
     </Card>

@@ -38,7 +38,9 @@ const ComplaintFormLoadingDialog = ({
     <AlertDialog open={open}>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>{intl('loading-dialog.title')}</AlertDialogTitle>
+          <AlertDialogTitle className={cn('text-center whitespace-pre-wrap')}>
+            {intl('loading-dialog.title')}
+          </AlertDialogTitle>
         </AlertDialogHeader>
         <div className={cn('flex min-h-64 w-full items-center justify-center')}>
           <LottiePlayer animationData={lottieLoading} play />

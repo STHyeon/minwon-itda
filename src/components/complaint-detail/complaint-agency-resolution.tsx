@@ -75,7 +75,7 @@ const ComplaintAgencyResolution = ({
   return (
     <Card>
       <CardHeader>
-        <CardTitle>해결 가능한 기관</CardTitle>
+        <CardTitle>{intl('agency-resolution.title')}</CardTitle>
       </CardHeader>
       <CardContent>{renderContent()}</CardContent>
     </Card>
