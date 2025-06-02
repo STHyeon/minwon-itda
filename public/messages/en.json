@@ -9,7 +9,7 @@
     "description": "Please freely enter any questions or concerns you have.\n(Entering keyword-focused content will help you get more accurate results)",
     "form": {
       "action-search": "Search",
-      "language-label": "Select Question Language",
+      "language-label": "Language for Response",
       "question-label": "Complaint Details",
       "question-placeholder": "How to reapply for Alien Registration Card"
     },

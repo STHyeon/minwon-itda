@@ -9,7 +9,7 @@
     "description": "ご質問や不便な点を自由に入力してください。\n（キーワードを中心に入力すると、より正確な結果が得られます）",
     "form": {
       "action-search": "検索する",
-      "language-label": "質問言語の選択",
+      "language-label": "回答を受け取る言語",
       "question-label": "お問い合わせ内容",
       "question-placeholder": "外国人登録証の再発行申請方法"
     },

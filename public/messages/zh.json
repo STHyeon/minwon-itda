@@ -9,7 +9,7 @@
     "description": "请自由输入您的问题或不便之处。\n(以关键词为中心输入可以获得更准确的结果)",
     "form": {
       "action-search": "搜索",
-      "language-label": "选择提问语言",
+      "language-label": "接收回复的语言",
       "question-label": "咨询内容",
       "question-placeholder": "外国人登录证重新申请方法"
     },

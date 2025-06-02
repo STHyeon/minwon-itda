@@ -9,7 +9,7 @@
     "description": "궁금하신 점이나 불편 사항을 자유롭게 입력해 주세요.\n(키워드 중심으로 입력하시면 더 정확한 결과를 얻을 수 있어요)",
     "form": {
       "action-search": "검색하기",
-      "language-label": "질문 언어 선택",
+      "language-label": "답변 받을 언어",
       "question-label": "민원 내용",
       "question-placeholder": "외국인등록증 재발급 신청 방법"
     },
