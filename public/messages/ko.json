@@ -10,6 +10,10 @@
     "form": {
       "action-search": "검색하기",
       "language-label": "답변 받을 언어",
+      "language-placeholder-selected": "지원 언어",
+      "location-label": "검색 지역",
+      "location-placeholder": "인천광역시 내 지역 (선택)",
+      "location-placeholder-selected": "인천광역시 내 지역",
       "question-label": "민원 내용",
       "question-placeholder": "외국인등록증 재발급 신청 방법"
     },
@@ -56,5 +60,18 @@
     "ja": "日本語 (일본어)",
     "ko": "한국어",
     "zh": "中文 (중국어)"
+  },
+  "Location": {
+    "bupyeong": "부평구",
+    "dong": "동구",
+    "ganghwa": "강화군",
+    "gyeyang": "계양구",
+    "jung": "중구",
+    "michuhol": "미추홀구",
+    "nam": "남구",
+    "namdong": "남동구",
+    "ongjin": "옹진구",
+    "seo": "서구",
+    "yeonsu": "연수구"
   }
 }

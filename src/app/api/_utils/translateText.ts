@@ -45,6 +45,6 @@ export async function translateText(raw: TranslateTextProps) {
 
     return translation.text;
   } catch {
-    return '';
+    return text;
   }
 }

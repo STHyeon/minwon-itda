@@ -26,7 +26,8 @@ interface LanguageSelectorProps {
 
 const LanguageSelector = ({ onChange }: LanguageSelectorProps) => {
   const locale = useLocale();
-  const intl = useTranslations('Language');
+  const commonIntl = useTranslations('Language');
+  const intl = useTranslations('ComplaintAskPage');
 
   //
   //
@@ -34,16 +35,18 @@ const LanguageSelector = ({ onChange }: LanguageSelectorProps) => {
 
   return (
     <Select defaultValue={locale} onValueChange={onChange}>
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger className="w-[11.25rem]">
         <SelectValue />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          <SelectLabel>지원언어</SelectLabel>
+          <SelectLabel>
+            {intl('form.language-placeholder-selected')}
+          </SelectLabel>
           {Object.values(LANGUAGE).map(language => {
             return (
               <SelectItem key={language} value={language}>
-                {intl(language)}
+                {commonIntl(language)}
               </SelectItem>
             );
           })}

@@ -10,6 +10,10 @@
     "form": {
       "action-search": "検索する",
       "language-label": "回答を受け取る言語",
+      "language-placeholder-selected": "サポート言語",
+      "location-label": "検索 地域",
+      "location-placeholder": "仁川広域市 内 地域 (選択)",
+      "location-placeholder-selected": "仁川広域市 内 地域",
       "question-label": "お問い合わせ内容",
       "question-placeholder": "外国人登録証の再発行申請方法"
     },
@@ -56,5 +60,18 @@
     "ja": "日本語 (日本語)",
     "ko": "한국어 (韓国語)",
     "zh": "中文 (中国語)"
+  },
+  "Location": {
+    "bupyeong": "富平区",
+    "dong": "東区",
+    "ganghwa": "江華郡",
+    "gyeyang": "桂陽区",
+    "jung": "中区",
+    "michuhol": "美推弘区",
+    "nam": "南区",
+    "namdong": "南洞区",
+    "ongjin": "甕津郡",
+    "seo": "西区",
+    "yeonsu": "延寿区"
   }
 }

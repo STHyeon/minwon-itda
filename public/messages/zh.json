@@ -10,6 +10,10 @@
     "form": {
       "action-search": "搜索",
       "language-label": "接收回复的语言",
+      "language-placeholder-selected": "支持的语言",
+      "location-label": "搜索 地域",
+      "location-placeholder": "仁川广域市 内 地域 (选择)",
+      "location-placeholder-selected": "仁川广域市 内 地域",
       "question-label": "咨询内容",
       "question-placeholder": "外国人登录证重新申请方法"
     },
@@ -56,5 +60,18 @@
     "ja": "日本語 (日语)",
     "ko": "한국어 (韩语)",
     "zh": "中文"
+  },
+  "Location": {
+    "bupyeong": "富平区",
+    "dong": "东区",
+    "ganghwa": "江华郡",
+    "gyeyang": "桂阳区",
+    "jung": "中区",
+    "michuhol": "美秋弘区",
+    "nam": "南区",
+    "namdong": "南洞区",
+    "ongjin": "瓮津郡",
+    "seo": "西区",
+    "yeonsu": "延寿区"
   }
 }

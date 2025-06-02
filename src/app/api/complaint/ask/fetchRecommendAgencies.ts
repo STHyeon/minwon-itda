@@ -24,16 +24,22 @@ const client = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
  */
 export async function fetchRecommendAgencies(
   question: string,
-  targetLanguage: LanguageType
+  targetLanguage: LanguageType,
+  location?: string
 ) {
   try {
     const contents = `
 Please analyze the following complaint and recommend up to ${MAX_RECOMMEND_AGENCIES} organizations that can help resolve it.
 Complaint: ${question}`;
+
     const SYSTEM_INSTRUCTION = `You are an assistant that analyzes complaints and recommends relevant government organizations. You receive a complaint and a list of government organizations, and respond with the most relevant organizations that can help resolve the complaint.
 
 Please find relevant organizations from the following JSON data:
-${JSON.stringify(jsonIncheonAgencies)}
+${JSON.stringify(
+  location
+    ? jsonIncheonAgencies.filter(agency => agency.LGs === location)
+    : jsonIncheonAgencies
+)}
 
 Your response must be a JSON array containing up to ${MAX_RECOMMEND_AGENCIES} organizations. An organization object has the following schema:
 

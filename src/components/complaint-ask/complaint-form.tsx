@@ -19,6 +19,7 @@ import {
 } from '../ui/form';
 import { Textarea } from '../ui/textarea';
 import ComplaintFormLoadingDialog from './complaint-form-loading-dialog';
+import ComplaintFormLocationSelector from './complaint-form-location-selector';
 
 import type { ApiResponse } from '@/typings/api-response';
 import type { SavingStorageData } from '@/typings/etc';
@@ -50,6 +51,7 @@ const ComplaintForm = () => {
 
   const askFormSchema = z.object({
     language: z.string(),
+    location: z.string().optional(),
     question: z
       .string()
       .min(MIN_DESCRIPTION_LENGTH, {
@@ -82,6 +84,10 @@ const ComplaintForm = () => {
         url.searchParams.append('keyword', data.question);
         url.searchParams.append('language', data.language);
 
+        if (data.location) {
+          url.searchParams.append('location', data.location);
+        }
+
         const request = await fetch(url);
         const response =
           (await request.json()) as ApiResponse<SavingStorageData>;
@@ -107,7 +113,9 @@ const ComplaintForm = () => {
 
           router.push(`${ROUTES.complaintAskDetail(updatedItems[0].id)}`);
         });
-      } catch {}
+      } catch {
+        toast.error(commonIntl('error-occurred'));
+      }
     });
   });
 
@@ -125,20 +133,40 @@ const ComplaintForm = () => {
             void handleFormSubmit();
           }}
         >
-          {/* 민원 질문 언어 */}
-          <FormField
-            control={useFormMethods.control}
-            name="language"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>{intl('form.language-label')}</FormLabel>
-                <FormControl>
-                  <LanguageSelector onChange={field.onChange} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <div className={cn('flex w-full flex-wrap gap-2')}>
+            {/* 민원 질문 언어 */}
+            <FormField
+              control={useFormMethods.control}
+              name="language"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{intl('form.language-label')}</FormLabel>
+                  <FormControl>
+                    <LanguageSelector {...field} onChange={field.onChange} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            {/* 검색 지역 */}
+            <FormField
+              control={useFormMethods.control}
+              name="location"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{intl('form.location-label')}</FormLabel>
+                  <FormControl>
+                    <ComplaintFormLocationSelector
+                      {...field}
+                      onChange={field.onChange}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
 
           {/* 민원 내용 */}
           <FormField

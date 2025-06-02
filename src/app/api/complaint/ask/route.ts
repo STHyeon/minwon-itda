@@ -18,12 +18,14 @@ export async function GET(request: NextRequest) {
   const reqKeyword = searchParams.get('keyword') || '';
   const reqLanguage = (searchParams.get('language') ||
     LANGUAGE.KO) as LanguageType;
+  const reqLocation = searchParams.get('location') || '';
 
   try {
     // 인천광역시내 민원과 관련된 기관 추천
     const recommendAgencies = await fetchRecommendAgencies(
       reqKeyword,
-      reqLanguage
+      reqLanguage,
+      reqLocation
     );
 
     // 국민신문고 민원 목록 중 질문과 가장 유사한 민원 아이템 조회

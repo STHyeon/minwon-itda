@@ -10,6 +10,10 @@
     "form": {
       "action-search": "Search",
       "language-label": "Language for Response",
+      "language-placeholder-selected": "Supported Languages",
+      "location-label": "Search Location",
+      "location-placeholder": "Incheon Metropolitan City (Select)",
+      "location-placeholder-selected": "Incheon Metropolitan City",
       "question-label": "Complaint Details",
       "question-placeholder": "How to reapply for Alien Registration Card"
     },
@@ -56,5 +60,18 @@
     "ja": "日本語 (일본어)",
     "ko": "한국어",
     "zh": "中文 (중국어)"
+  },
+  "Location": {
+    "bupyeong": "Bupyeong-gu",
+    "dong": "Dong-gu",
+    "ganghwa": "Ganghwa-gun",
+    "gyeyang": "Gyeyang-gu",
+    "jung": "Jung-gu",
+    "michuhol": "Michuhol-gu",
+    "nam": "Nam-gu",
+    "namdong": "Namdong-gu",
+    "ongjin": "Ongjin-gun",
+    "seo": "Seo-gu",
+    "yeonsu": "Yeonsu-gu"
   }
 }
